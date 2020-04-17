@@ -1,9 +1,11 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
-@include('layouts.navbar')
 @extends('layouts.app')
 
 @section('content')
+
+<br><br>
+
 
 <br><br>
 <div class="container">

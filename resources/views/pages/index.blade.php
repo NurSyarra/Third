@@ -1,10 +1,15 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
-@include('layouts.navbar')
+@extends('layouts.app')
+
+@section('content')
+
 @include('layouts.carousel')
 
-@extends('layouts.app')
-@section('content')
+<br><br>
+<div id="app">        
+        <main class="py-4">
+            <div class="container">
 
 <div class="category">
 <center><h4>Event Categories</h4></center>
@@ -110,5 +115,9 @@
 
     </div>
 </div>
+
+  </div>
+    </main>
+    	</div>
 
 @endsection
