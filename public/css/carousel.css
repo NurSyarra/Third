@@ -32,8 +32,8 @@
     animation-fill-mode: both;
 }
 #myCarousel .container {max-width: 1490px;  }
-#myCarousel .carousel-item{height:70%; min-height:300px; }
-#myCarousel{position:relative; z-index:1; background:#3490dc; center center no-repeat; background-size:cover; }
+#myCarousel .carousel-item{height:50%; min-height:300px; }
+#myCarousel{position:relative; z-index:1; background:#007BFF; center center no-repeat; background-size:cover; }
 
 .carousel-control-next, .carousel-control-prev{height:40px; width:40px; padding:12px; top:50%; bottom:auto; transform:translateY(-50%); background-color: #f47735; }
 

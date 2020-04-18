@@ -52,3 +52,9 @@ Auth::routes();
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('/editprofile', 'UserController@index');
+
+Route::post('pages/updatedprofile', 'UserController@store')->name('pages.updatedprofile');
+
+//Route::post('pages/profile', );

@@ -20,8 +20,8 @@
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-7 col-12 order-md-1 order-2">
-              <h4>Recruit committee<br>
-                members easily</h4>
+              <h4>Welcome to <br>
+                Committee Manager</h4>
               <p><br>
                 necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
               <a href="#">REGISTER AS ORGANISER NOW</a> </div>

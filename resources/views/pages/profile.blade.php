@@ -7,7 +7,7 @@
 <br><br>
 
 
-<br><br>
+<br>
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
@@ -27,30 +27,29 @@
                         @csrf
                         
                         <div class="form-group row">
-                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Name') }}</label>
+                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Name:') }}</label>
+                            
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-lg-3 col-form-label form-control-label">{{ __('Email:') }}</label>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Matric No.:') }}</label>
 
                             
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-lg-3 col-form-label form-control-label">{{ __('Email') }}</label>
-
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Matric No.') }}</label>
+                            <label for="kulliyyah" class="col-lg-3 col-form-label form-control-label">{{ __('Kulliyyah:') }}</label>
 
                             
                         </div>
 
                         <div class="form-group row">
-                            <label for="kulliyyah" class="col-lg-3 col-form-label form-control-label">{{ __('Kulliyyah') }}</label>
-
-                            
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="level" class="col-lg-3">{{ __('Level:') }} </label>
+                            <label for="level" class="col-lg-3">{{ __('Level of Studies:') }} </label>
 
                             
                         </div>
@@ -61,12 +60,17 @@
 
                         </div>
 
+                        <div class="form-group row">
+                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Interest:') }}</label>
+
+                        </div>
+
 
                         <br>            
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="/profile" class="btn btn-primary">{{ __('Edit Profile') }}</a>
+                                <a href="/editprofile" class="btn btn-primary">{{ __('Edit Profile') }}</a>
                             </div>
                         </div>
                 </div>
