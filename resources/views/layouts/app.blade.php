@@ -18,33 +18,41 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- mdbootsrap -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+
 </head>
 <body>
+    
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/storage/image/logo-6.png" href="" width="100" height="70" alt="">
-                </a>
+               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                       
+
+                    
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-5 my-sm-0" type="submit">Search</button>
-                        </form>
-                        </nav>     
+                            
                         <li class="nav-item">
                             <a class="nav-link" href="/about">{{ __('About') }}</a>
                         </li>
@@ -54,7 +62,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">{{ __('Events') }}</a>
                         </li>
-                    
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -130,13 +137,19 @@
                 </div>
             </div>
         </nav>
+                    @include('inc.messages')
 
-        <main class="py-4">
-        	<div class="container">
-            @include('inc.messages')
-            @yield('content')
-        </div>
-        </main>
+                @yield('content')
+
+    
+
+
     </div>
+
+    <!-- mdbootstrap -->
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
 </body>
 </html>
