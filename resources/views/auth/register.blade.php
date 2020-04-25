@@ -1,4 +1,3 @@
-@include('layouts.navbar')
 @extends('layouts.app')
 
 @section('content')
@@ -70,7 +69,6 @@
                             <select class="form-control" name="type" id="type">
                                 <option value="organiser">Organiser</option>
                                 <option value="student">Student</option>
-                                
                             </select>
                         </div>
                         </div>

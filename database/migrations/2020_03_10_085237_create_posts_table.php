@@ -16,10 +16,14 @@ class CreatePOstsTable extends Migration
         Schema::create('p_osts', function (Blueprint $table) {
             $table->id();
             $table->string('Organizer');
-            $table->string('EventName');
-            $table->string('EventLocation');
+            $table->string('EventName')->nullable();
+            $table->string('EventDate')->nullable();
+            $table->string('EventLocation')->nullable();
             $table->string('Description');
-            $table->string('Collaborator');
+            $table->string('Collaborator')->nullable();
+            $table->string('Categories');
+            $table->date('RecruitmentDate');
+            $table->string('TotalCommittee');
             $table->string('Contact');
             $table->timestamps();
         });

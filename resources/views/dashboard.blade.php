@@ -16,6 +16,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if(Auth::user()->type == 'organiser') 
                         <h3>Your Event</h3>
                         <a href="/posts/create" class="btn btn-primary">Create Recruitment Application</a>
                         <hr>
@@ -28,7 +29,7 @@
                             </tr>
                             @foreach($posts as $post)
                             <tr>
-                                <td>{{$post->title}}</td>
+                                <td>{{$post->EventName}}</td>
                                 <td><a href="/posts/{{$post->id}}/edit" class="btn btn-info">Edit</a></td>
                                 <td>
                                     {{Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])}}
@@ -44,6 +45,7 @@
                         @endif
                     </div>
                 </div>
+                @else
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
                         <div class="panel-body">
@@ -54,6 +56,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
