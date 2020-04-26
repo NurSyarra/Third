@@ -31,8 +31,8 @@ p.ex1 {
     <div class="col-lg-8">
                 <hr>
             <div class="row">
-                <div class="col-md-4">
-                    <label>Organizer</label>
+                <div class="col-md-4 font-weight-bold">
+                    <label> Organizer</label>
                 </div>
                 <div class="col-md-4">
                     <p class="ex1">{!!$post->Organizer!!}</p>
