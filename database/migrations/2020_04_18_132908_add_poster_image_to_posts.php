@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPoster extends Migration
+class AddPosterImageToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPoster extends Migration
      */
     public function up()
     {
-        Schema::table('p_osts', function($table){
-            $table->string('cover_image');
+        Schema::table('p_osts', function (Blueprint $table) {
+            $table->string('poster_image');
         });
     }
 
@@ -25,8 +25,8 @@ class AddPoster extends Migration
      */
     public function down()
     {
-        Schema::table('p_osts', function($table){
-            $table->dropColumn('cover_image');
+        Schema::table('p_osts', function (Blueprint $table) {
+            $table->dropColumn('poster_image');
         });
     }
 }
