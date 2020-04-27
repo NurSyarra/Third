@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+ <div id="app">        
+        <main class="py-4">
+            <div class="container">
+                <br>
+
         <h1>Posts</h1>
         @if(count($posts) > 0)
         	@foreach($posts as $post)
@@ -20,4 +25,8 @@
         @else
         	<p>No posts found</p>
         @endif
+
+</div>
+</main>
+</div>
 @endsection

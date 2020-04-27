@@ -4,10 +4,17 @@
 
 @section('content')
 
+@if(session('successMsg'))
+
+<div class="alert alert-success" role="alert">
+    {{ session('successMsg') }}
+</div>
+
+@endif
+
+
 <br><br>
-
-
-<br>
+<br><br>
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
@@ -28,16 +35,27 @@
                         
                         <div class="form-group row">
                             <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Name:') }}</label>
-                            
+
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->name }}</label> 
+                            </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-lg-3 col-form-label form-control-label">{{ __('Email:') }}</label>
 
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->email }}</label> 
+                            </div>
+
                         </div>
 
                         <div class="form-group row">
                             <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Matric No.:') }}</label>
+
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->profile->matric }}</label> 
+                            </div>
 
                             
                         </div>
@@ -45,25 +63,39 @@
                         <div class="form-group row">
                             <label for="kulliyyah" class="col-lg-3 col-form-label form-control-label">{{ __('Kulliyyah:') }}</label>
 
-                            
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="level" class="col-lg-3">{{ __('Level of Studies:') }} </label>
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->profile->kulliyyah }}</label> 
+                            </div>
 
                             
                         </div>
 
+                        <div class="form-group row">
+                            <label for="level" class="col-lg-3">{{ __('Level of studies:') }} </label>
+
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->profile->level }}</label> 
+                            </div>
+                            
+                        </div>
+
 
                         <div class="form-group row">
-                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Phone No.:') }}</label>
+                            <label for="phone" class="col-lg-3 col-form-label form-control-label">{{ __('Phone No.:') }}</label>
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->profile->phone }}</label> 
+                            </div>
 
                         </div>
 
                         <div class="form-group row">
-                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Interest:') }}</label>
+                            <label for="skills" class="col-lg-3 col-form-label form-control-label">{{ __('Skills:') }}</label>
+                            <div class="col-lg-9">
+                                <label> {{ Auth::user()->profile->skills }}</label> 
+                            </div>
 
                         </div>
+
 
 
                         <br>            
@@ -81,7 +113,7 @@
 
 
         <div class="col-lg-4 order-lg-1 text-center">
-            <img src="image/avatar.png" class="mx-auto img-fluid img-circle d-block" alt="avatar" style="width: 150px; height: 150px; border-radius: 50%">
+            <img src="{{ Auth::user()->profile->avatar }}" class="mx-auto img-fluid img-circle d-block" alt="avatar" style="width: 150px; height: 150px; border-radius: 50%">
         </div>
     </div>
 
@@ -90,3 +122,4 @@
                    
                    
 @endsection
+

@@ -62,8 +62,13 @@ class PostsController extends Controller
             'Collaborator' => 'required',
             'Contact' => 'required',
             'cover_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'Categories' => 'required',
         ]);
         
+
+        $arrayToString = implode(', ', $request->input('Categories'));
+        $request['Categories'] = $arrayToString;
+
         //Handle File Upload
         if($request->hasFile('cover_image')){
             // Get Filename with the extension
@@ -88,9 +93,11 @@ class PostsController extends Controller
         $post->Description = $request->input('Description');
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
+        $post->Time = $request->input('Time');
         $post->Contact = $request->input('Contact');
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
+        $post->Categories = $request->input('Categories');
         $post->save();
 
         return redirect('/posts')->with('success','Post Created');
@@ -198,4 +205,6 @@ class PostsController extends Controller
         return redirect('/posts')->with('success','Post Removed');
 
     }
+
+    
 }

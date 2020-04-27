@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-        
+       <div id="app">        
+        <main class="py-4">
+            <div class="container">
+                <br>
+  
         <h1>CREATE POST</h1>
         {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' =>'POST']) !!}
     		<div class="form-group">
@@ -34,4 +38,7 @@
             {{Form::hidden('_method', 'PUT')}}
     		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
 		{!! Form::close() !!}
+    </div>
+</main>
+</div>
 @endsection

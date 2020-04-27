@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
+use auth;
 
 class UserController extends Controller
 {
@@ -13,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.editprofile');
+        return view('pages.profile')->with('user', Auth::user());
     }
 
     /**
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.editprofile')->with('user', Auth::user());
     }
 
     /**
@@ -34,7 +36,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = auth()->user()->id;
+      
+        $profile = new Profile;
+
+        $profile->user_id = auth()->user()->id;
+        $profile->matric = $request->matric;
+        $profile->kulliyyah = $request->kulliyyah;
+        $profile->level = $request->level;
+        $profile->phone = $request->phone;
+        $profile->skills = $request->skills;
+
+        $profile->save();
+
+        return redirect(route('profile'))->with('successMsg', 'Successfully update profile');
+
+
+        return redirect()->back()->with('message', 'Successfully update profile!');
     }
 
     /**
@@ -68,7 +85,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

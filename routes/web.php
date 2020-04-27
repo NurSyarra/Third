@@ -30,7 +30,6 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
-Route::get('/profile', 'PagesController@profile');
 Route::get('/organiserprofile', 'PagesController@organiserprofile');
 
 Route::resource('posts', 'PostsController');
@@ -53,8 +52,24 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/editprofile', 'UserController@index');
+Route::get('/editprofile', 'UserController@create');
 
-Route::post('pages/updatedprofile', 'UserController@store')->name('pages.updatedprofile');
+Route::post('/editprofile', 'UserController@store')->name('store');
+
+Route::get('/profile', 'UserController@index')->name('profile');
+
+Route::get('education', 'PagesController@display_education')->name('education');
+
+Route::get('festival', 'PagesController@display_fest')->name('festival');
+
+Route::get('animals', 'PagesController@display_animals')->name('animals');
+
+Route::get('culture', 'PagesController@display_culture')->name('culture');
+
+Route::get('community', 'PagesController@display_community')->name('community');
+
+Route::get('festival', 'PagesController@display_fest')->name('festival');
+
+Route::get('health', 'PagesController@display_health')->name('health');
 
 //Route::post('pages/profile', );

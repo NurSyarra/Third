@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\POst;
 
 class PagesController extends Controller
 {
@@ -25,14 +27,45 @@ class PagesController extends Controller
     	return view('pages.services')->with($data);
     }
 
-    public function profile(){
-        $title = 'Profile';
-        return view('pages.profile')->with('title', $title);
-    }
+   
     public function organiserprofile(){
         $title = 'Profile';
         return view('pages.organiserprofile')->with('title', $title);
     }
 
+    public function display_education(){
+        $post = POst::all();
+        return view('pages.category_page')-> with('post', $post);
+    }
+
+    public function display_fest(){
+        $title = 'fest';
+        $post = POst::where('Categories', 'fest' )->get();
+        return view('pages.category_page')-> with('post', $post);
+    }
+
+public function display_health(){
+        $title = 'fest';
+        $post = POst::where('Categories', 'health' )->get();
+        return view('pages.category_page')-> with('post', $post);
+    }
+
+public function display_culture(){
+        $title = 'fest';
+        $post = POst::where('Categories', 'culture' )->get();
+        return view('pages.category_page')-> with('post', $post);
+    }
+
+public function display_animals(){
+        $title = 'fest';
+        $post = POst::where('Categories', 'animals' )->get();
+        return view('pages.category_page')-> with('post', $post);
+    }
+
+public function display_community(){
+        $title = 'fest';
+        $post = POst::where('Categories', 'community' )->get();
+        return view('pages.category_page')-> with('post', $post);
+    }        
 
 }

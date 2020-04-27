@@ -13,6 +13,10 @@
                  {{$post->EventLocation}}
                  {{$post->Collaborator}}
                  {{$post->Contact}}
+                 {{$post->Time}}
+                 {{$post->Categories}}
+
+
 
         </div>
         <hr>

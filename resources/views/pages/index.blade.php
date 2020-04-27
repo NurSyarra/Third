@@ -19,7 +19,9 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
-                <img class="fas fa-4x img-sizing" src="image/book.png"> </img>
+                <a href="education">
+                <img class="fas fa-4x img-sizing" src="image/book.png" > </img>
+                </a>
               <h5 class="card-title">Education</h5>
                 </div>
             </div>
@@ -29,7 +31,8 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
-                <img src="image/nature.png" class="fas fa-4x img-sizing"></img>
+                <a href="animals">                                                
+                <img src="image/nature.png" class="fas fa-4x img-sizing"></img></a>
               <h5 class="card-title">Animals & Nature</h5>
                 </div>
             </div>
@@ -39,7 +42,8 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
-               <img src="image/arts.png" class="fas fa-code fa-4x img-sizing"></img>
+                <a href="culture">                                                
+               <img src="image/arts.png" class="fas fa-code fa-4x img-sizing"></img></a>
               <h5 class="card-title">Culture & Arts</h5>
                 </div>
             </div>
@@ -51,7 +55,8 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
-                <img src="image/old folks.png" class="fas fa-code fa-4x img-sizing"></img>
+                <a href="community">                                                
+                <img src="image/old folks.png" class="fas fa-code fa-4x img-sizing"></img></a>
               <h5 class="card-title">Community Service</h5></div>
             </div>
           </div>
@@ -60,7 +65,9 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
+                <a href="festival">                                
                 <img src="image/festival.png" class="fas fa-code fa-4x img-sizing"></img>
+                </a>
               <h5 class="card-title">Festival</h5>
                 </div>
             </div>
@@ -70,7 +77,8 @@
           <div class="">
             <div class="card-block m-3">
               <div class="text-center">
-                <img src="image/health.png" class="fas fa-code fa-4x img-sizing"></img>
+                <a href="health">                                                
+                <img src="image/health.png" class="fas fa-code fa-4x img-sizing"></img></a>
               <h5 class="card-title">Health</h5>
                 </div>
             </div>

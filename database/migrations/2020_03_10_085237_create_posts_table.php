@@ -21,6 +21,8 @@ class CreatePOstsTable extends Migration
             $table->string('Description');
             $table->string('Collaborator');
             $table->string('Contact');
+            $table->string('Categories');
+            $table->dateTime('Time');
             $table->timestamps();
         });
     }

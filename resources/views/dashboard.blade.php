@@ -2,7 +2,12 @@
 
 @section('content')
 
-<br><br>
+<br>
+ <div id="app">        
+        <main class="py-4">
+            <div class="container">
+                <br>
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -44,17 +49,13 @@
                         @endif
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-                        <div class="panel-body">
-                        You are logged in! as <strong>{{ strtoupper(Auth::user()->type) }}</strong>
-                        Admin Page: <a href="{{ url('/') }}/adminOnlyPage">{{ url('/') }}/adminOnlyPage</a>
-                        Super Admin Page: <a href="{{ url('/') }}/superAdminOnlyPage">{{ url('/') }}/super_adminOnlyPage</a>
-                        Member Page: <a href="{{ url('/') }}/memberOnlyPage">{{ url('/') }}/memberOnlyPage</a>
-                    </div>
+                        
                 </div>
             </div>
         </div>
     </div>
 </div>
+</main>
+</div>
+
 @endsection
