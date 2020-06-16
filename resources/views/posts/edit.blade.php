@@ -1,6 +1,10 @@
+@php
+    $values = explode(", ", $post->Categories);
+@endphp
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">          
@@ -30,41 +34,43 @@
                 {{Form::label('Collaborator', 'Collaborator')}}
                 {{Form::textarea('Collaborator', $post->Collaborator, ['class' => 'form-control','placeholder' =>'Collaborator', 'rows' => 5, 'cols' => 40])}}
             </div><hr>
-            {{Form::label('Categories', 'Categories')}}
+
+            <div class="form-group">
+                <label>Categories</label>
                 <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Education" 
-                            {{in_array("Education", $Categories) ? "checked": ""}}>Education
+                            <input type="checkbox" name="option[]" value="Education" 
+                            {{in_array("Education", $values) ? "checked": ""}}>Education
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Animals & Nature"
-                            {{in_array("Animals & Nature", $Categories) ? "checked": ""}}>Animals & Nature
+                            <input type="checkbox" name="option[]" value="Animals and Nature"
+                            {{in_array("Animals and Nature", $values) ? "checked": ""}}>Animals and Nature
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Culture & Arts"
-                            {{in_array("Culture & Arts", $Categories) ? "checked": ""}}>Culture & Arts
+                            <input type="checkbox" name="option[]" value="Culture and Arts"
+                            {{in_array("Culture and Arts", $values) ? "checked": ""}}>Culture and Arts
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Community Service"
-                            {{in_array("Community Service", $Categories) ? "checked": ""}}>Community Service
+                            <input type="checkbox" name="option[]" value="Community Service"
+                            {{in_array("Community Service", $values) ? "checked": ""}}>Community Service
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Festival"
-                            {{in_array("Festival", $Categories) ? "checked": ""}}>Festival
+                            <input type="checkbox" name="option[]" value="Festival"
+                            {{in_array("Festival", $values) ? "checked": ""}}>Festival
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Health"
-                            {{in_array("Health", $Categories) ? "checked": ""}}>Health
+                            <input type="checkbox" name="option[]" value="Health"
+                            {{in_array("Health", $values) ? "checked": ""}}>Health
                         </label>
                     </div>
             </div><hr>
@@ -74,7 +80,7 @@
             </div><hr>
             <div class="form-group">
                 {{Form::label('TotalCommittee', 'Total Committees Needed')}}
-                {{Form::selectRange('number', 0, 1000)}}
+                {{Form::selectRange('TotalCommittee', 0, 1000, ['class' => 'field'])}}
             </div><hr>
             
             <div class="form-group">

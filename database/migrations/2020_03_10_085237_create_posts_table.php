@@ -25,6 +25,7 @@ class CreatePOstsTable extends Migration
             $table->date('RecruitmentDate');
             $table->string('TotalCommittee');
             $table->string('Contact');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

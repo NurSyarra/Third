@@ -63,8 +63,6 @@ class PostsController extends Controller
             'Collaborator' => 'required',
             'Contact' => 'required',
             'RecruitmentDate' => 'required',
-            'Categories' => 'required',
-            'TotalCommittee' => 'required',
             
             'poster_image' => 'image|nullable|max:1999',
         ]);
@@ -87,7 +85,6 @@ class PostsController extends Controller
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
-
         // Create Post
 
         $post = new POst;
@@ -98,13 +95,13 @@ class PostsController extends Controller
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
         $post->RecruitmentDate = $request->input('RecruitmentDate');
-        $post->Categories = implode(" , ", $request->Categories);
+        $Categories = implode(", ", $request->get('option'));
+        $post->Categories = $Categories;
         $post->TotalCommittee = $request->get('TotalCommittee');
         $post->Contact = $request->input('Contact');
         $post->user_id = auth()->user()->id;
         $post->poster_image = $fileNameToStore;
         $post->save();
-
         return redirect('/posts')->with('success','Post Created');
 
     }
@@ -130,12 +127,18 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = POst::find($id);
+     
+        //Check if post exists before deleting
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
 
-        //Check for correct user
-        if(auth()->user()->id !== $post->user_id){
+        // Check for correct user
+        if(auth()->user()->id !==$post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
-        return view('posts.edit')-> with('post', $post);
+
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -154,10 +157,8 @@ class PostsController extends Controller
             'Description' => 'required',
             'EventLocation' => 'required',
             'Collaborator' => 'required',
-            'Categories' => 'required',
             'RecruitmentDate' => 'required',
-            'TotalCommittee' => 'required',
-             
+            
             'Contact' => 'required',
         ]);
 
@@ -188,9 +189,9 @@ class PostsController extends Controller
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
         $post->RecruitmentDate = $request->input('RecruitmentDate');
-        $post->Categories = explode(" , ", $request->Categories);
+        $Categories = implode(", ", $request->get('option'));
+        $post->Categories = $Categories;
         $post->TotalCommittee = $request->get('TotalCommittee');
-        
         $post->Contact = $request->input('Contact');
         $post->user_id = auth()->user()->id;
         if($request->hasFile('poster_image')){
@@ -210,6 +211,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = POst::find($id);
+
+        //Check if post exists before deleting
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+        
         //Check for correct user
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');

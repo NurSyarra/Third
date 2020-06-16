@@ -31,7 +31,6 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 Route::get('/profile', 'PagesController@profile');
-Route::get('/organiserprofile', 'PagesController@organiserprofile');
 
 Route::resource('posts', 'PostsController');
 
@@ -52,3 +51,5 @@ Auth::routes();
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('organiserprofile', 'OrganiserProfileController@index');
+Route::post('organiserprofile', 'OrganiserProfileController@update')->name('organiserprofile.update');

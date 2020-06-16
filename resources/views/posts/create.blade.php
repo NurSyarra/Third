@@ -31,35 +31,35 @@
                 {{Form::textarea('Collaborator', '', ['class' => 'form-control','placeholder' =>'Collaborator', 'rows' => 5, 'cols' => 40])}}
             </div><hr>
             <div class="form-group">
-                {{Form::label('Categories', 'Categories')}}
+                <label>Categories</label>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Education">Education
+                            <input type="checkbox" name="option[]" value="Education"> Education
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Animals & Nature">Animals & Nature
+                            <input type="checkbox" name="option[]" value="Animals and Nature"> Animals and Nature
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Culture & Arts">Culture & Arts
+                            <input type="checkbox" name="option[]" value="Culture and Arts"> Culture and Arts
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Community Service">Community Service
+                            <input type="checkbox" name="option[]" value="Community Service"> Community Service
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Festival">Festival
+                            <input type="checkbox" name="option[]" value="Festival"> Festival
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="Categories[]" value="Health">Health
+                            <input type="checkbox" name="option[]" value="Health"> Health
                         </label>
                     </div>
             </div><hr>

@@ -112,7 +112,7 @@
                                         Dashboard
                                     </a>
                                     <a class="dropdown-item" href="/organiserprofile">
-                                        Organiser Profile
+                                        Profile
                                     </a>
                                     <a class="dropdown-item" href="/posts">
                                         Event History

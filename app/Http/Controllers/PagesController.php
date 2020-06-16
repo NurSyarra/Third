@@ -29,8 +29,4 @@ class PagesController extends Controller
         $title = 'Profile';
         return view('pages.profile')->with('title', $title);
     }
-    public function organiserprofile(){
-        $title = 'Profile';
-        return view('pages.organiserprofile')->with('title', $title);
-    }
 }
