@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Profile;
-use auth;
+use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -13,9 +17,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        return view('pages.profile')->with('user', Auth::user());
+
+        $user = DB::table('profile')->where('user_id', Auth::user()->id)->first();
+
+        if(!$user){
+             //user is not found 
+            return view('pages.profile')->with('user', Auth::user());
+        }
+        if($user){
+             // user found 
+            return view('pages.editprofile')->with('user', Auth::user());
+
+        }
     }
 
     /**
@@ -25,7 +40,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.editprofile')->with('user', Auth::user());
+
+        //
     }
 
     /**
@@ -36,22 +52,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      
+
+        
         $profile = new Profile;
 
         $profile->user_id = auth()->user()->id;
-        $profile->matric = $request->matric;
-        $profile->kulliyyah = $request->kulliyyah;
-        $profile->level = $request->level;
-        $profile->phone = $request->phone;
-        $profile->skills = $request->skills;
+        $profile->matric = $request->input('matric');
+        $profile->kulliyyah = $request->input('kulliyyah');
+        $profile->level = $request->input('level');
+        $profile->phone = $request->input('phone');
+        $profile->skills = $request->input('skills');
+
+        if(request('avatar')) {
+            $imagePath = request('avatar')->store('profile', 'public');
+
+            $avatar = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+            $avatar->save();
+        }
+        
+        $profile->avatar = $request->input('avatar');
+
+
 
         $profile->save();
 
-        return redirect(route('profile'))->with('successMsg', 'Successfully update profile');
+        return redirect()->route('profile.index')->with('successMsg', 'Successfully update profile');
 
-
-        return redirect()->back()->with('message', 'Successfully update profile!');
     }
 
     /**
@@ -62,7 +88,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        //return $user;
     }
 
     /**
@@ -71,9 +97,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        //return view('pages.editprofile', compact('user'));
+
     }
 
     /**
@@ -83,9 +110,36 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(User $user)
     {
-        
+    
+           
+        $data = request()->validate([
+            'matric' =>'',
+            'kulliyyah' => '',
+            'level' => '',
+            'phone' => '',
+            'skills' => '',
+            'avatar' => '',
+        ]);
+
+
+
+        if(request('avatar')) {
+            $imagePath = request('avatar')->store('profile', 'public');
+
+            $avatar = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
+            $avatar->save();
+        }
+
+
+        auth()->user()->profile->update(array_merge(
+            $data,
+            ['avatar' => $imagePath],
+
+        ));
+
+        return redirect()->back();
     }
 
     /**
@@ -98,6 +152,4 @@ class UserController extends Controller
     {
         //
     }
-
-
 }
