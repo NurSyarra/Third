@@ -14,7 +14,8 @@ class Profile extends Model
         }
 
     protected $fillable = [
-    	'matric', 'kulliyyah', 'level', 'phone', 'skills',
+    	'matric', 'kulliyyah', 'level', 'phone', 'skills', 
 
     ];
 }
+    	
