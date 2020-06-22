@@ -64,3 +64,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#about_title{
+ font-family: Cambria; 
+ font-size: 40px; 
+ font-style: normal; 
+ font-variant: normal; 
+ font-weight: 300; 
+ line-height: 27.9px; 
+}
