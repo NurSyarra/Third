@@ -22,6 +22,7 @@ class CreatePOstsTable extends Migration
             $table->string('Description');
             $table->string('Collaborator')->nullable();
             $table->string('Categories');
+            $table->date('startRec');
             $table->date('RecruitmentDate');
             $table->string('TotalCommittee');
             $table->string('Contact');

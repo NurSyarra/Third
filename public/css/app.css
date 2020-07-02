@@ -21,7 +21,7 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #3490dc;
+  --primary: #348781;
   --secondary: #6c757d;
   --success: #38c172;
   --info: #6cb2eb;
@@ -504,7 +504,14 @@ mark,
 .blockquote-footer::before {
   content: "\2014\A0";
 }
-
+/*.main-img {
+    background-image: url('/image/background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}*/
 .img-fluid {
   max-width: 100%;
   height: auto;
@@ -4812,6 +4819,8 @@ input[type=button].btn-block {
   float: none;
 }
 
+
+
 .navbar-text {
   display: inline-block;
   padding-top: 0.5rem;
@@ -7317,14 +7326,14 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #3490dc !important;
+  background-color: #348781 !important;
 }
 
 a.bg-primary:hover,
 a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #2176bd !important;
+  background-color: #348781 !important;
 }
 
 .bg-secondary {
@@ -11354,6 +11363,8 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
+ 
 
 
 }

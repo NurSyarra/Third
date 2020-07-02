@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+<style type="text/css">
+    .column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
 @section('content')
 
 <br><br>
@@ -7,13 +20,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="width: 800px">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <div class="row">
+                    <div class="column">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        <br><br>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -68,6 +83,18 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="column">
+                    <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                      <ul class="list-unstyled" style="line-height: 2">
+                          <li><span class="fa fa-check text-success"></span> A platform for the organizer or societies to recruit the committee for event.</li>
+                          <li><span class="fa fa-check text-success"></span> A platform for student to join more activities in university.</li>
+                          <li><span class="fa fa-check text-success"></span> Keep track the activities for the organizer and students.</li>
+                          <li><span class="fa fa-check text-success"></span> Easy to use platform which includes familiar functions and features.</li>
+                        </ul>
+                      <p><a href="/register" class="btn btn-info btn-block">Yes please, register now!</a></p>
+                </div>
+                </div>
                 </div>
             </div>
         </div>

@@ -32,10 +32,10 @@ p.ex1 {
                 <hr>
             <div class="row">
                 <div class="col-md-4 font-weight-bold">
-                    <label> Organizer</label>
+                    <label><b> Organizer</b></label>
                 </div>
                 <div class="col-md-4">
-                    <p class="ex1">{!!$post->Organizer!!}</p>
+                    <p class="ex1"><a href="/organiserprofile/{{Auth::user()->id}}">{!!$post->Organizer!!}</a></p>
                 </div>
             </div>
             <div class="row">
@@ -80,6 +80,14 @@ p.ex1 {
             </div>
             <div class="row">
                 <div class="col-md-4">
+                    <label>Recruitment Date</label>
+                </div>
+                <div class="col-md-4">
+                    <p class="ex1">{!!$post->startRec!!}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
                     <label>Last Recruitment Date</label>
                 </div>
                 <div class="col-md-4">
@@ -115,15 +123,15 @@ p.ex1 {
                  <hr>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Organizer</label>
+                            <label><b>Organizer</b></label>
                         </div>
                         <div class="col-md-4">
-                            <p class="ex1">{!!$post->Organizer!!}</p>
+                            <p class="ex1"><a href="/organiserprofile">{!!$post->Organizer!!}</a></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Description</label>
+                            <label><b>Description</b> </label>
                         </div>
                         <div class="col-md-8">
                             <p class="ex1">{!!$post->Description!!}</p>
@@ -131,7 +139,7 @@ p.ex1 {
                     </div>  
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Event Date</label>
+                            <label><b>Event Date</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->EventDate!!}</p>
@@ -139,7 +147,7 @@ p.ex1 {
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Event Location</label>
+                            <label><b>Event Location</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->EventLocation!!}</p>
@@ -147,7 +155,7 @@ p.ex1 {
                     </div>  
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Collaborator</label>
+                            <label><b>Collaborator</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->Collaborator!!}</p>
@@ -155,7 +163,7 @@ p.ex1 {
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Categories</label>
+                            <label><b>Categories</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->Categories!!}</p>
@@ -163,7 +171,15 @@ p.ex1 {
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Last Recruitment Date</label>
+                            <label><b>Recruitment Date</b> </label>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="ex1">{!!$post->startRec!!}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label><b>Last Recruitment Date</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->RecruitmentDate!!}</p>
@@ -171,7 +187,7 @@ p.ex1 {
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Total Committee Needed</label>
+                            <label><b>Total Committee Needed</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->TotalCommittee!!}</p>
@@ -180,7 +196,7 @@ p.ex1 {
                        
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Contact Person</label>
+                            <label><b>Contact Person</b> </label>
                         </div>
                         <div class="col-md-4">
                             <p class="ex1">{!!$post->Contact!!}</p>
@@ -211,7 +227,7 @@ p.ex1 {
                         <label>Organizer</label>
                     </div>
                     <div class="col-md-4">
-                        <p class="ex1">{!!$post->Organizer!!}</p>
+                        <p class="ex1"><a href="/organiserprofile">{!!$post->Organizer!!}</a></p>
                     </div>
                 </div>
                 <div class="row">
@@ -252,6 +268,14 @@ p.ex1 {
                     </div>
                     <div class="col-md-4">
                         <p class="ex1">{!!$post->Categories!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Recruitment Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->startRec!!}</p>
                     </div>
                 </div>
                 <div class="row">

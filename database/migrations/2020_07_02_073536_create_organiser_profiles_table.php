@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganiserprofilesTable extends Migration
+class CreateOrganiserProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateOrganiserprofilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('organiserprofiles', function (Blueprint $table) {
+        Schema::create('organiser_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('desc');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('about')->nullable();
+            $table->string('url')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
+
+            $table->index('user_id');
         });
     }
 
@@ -28,6 +32,6 @@ class CreateOrganiserprofilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organiserprofiles');
+        Schema::dropIfExists('organiser_profiles');
     }
 }

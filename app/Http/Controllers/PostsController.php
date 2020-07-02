@@ -63,6 +63,7 @@ class PostsController extends Controller
             'Collaborator' => 'required',
             'Contact' => 'required',
             'RecruitmentDate' => 'required',
+            'startRec' => 'required',
             
             'poster_image' => 'image|nullable|max:1999',
         ]);
@@ -95,6 +96,7 @@ class PostsController extends Controller
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
         $post->RecruitmentDate = $request->input('RecruitmentDate');
+        $post->startRec = $request->input('startRec');
         $Categories = implode(", ", $request->get('option'));
         $post->Categories = $Categories;
         $post->TotalCommittee = $request->get('TotalCommittee');
@@ -158,7 +160,7 @@ class PostsController extends Controller
             'EventLocation' => 'required',
             'Collaborator' => 'required',
             'RecruitmentDate' => 'required',
-            
+            'startRec' =>'required',
             'Contact' => 'required',
         ]);
 
@@ -189,6 +191,7 @@ class PostsController extends Controller
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
         $post->RecruitmentDate = $request->input('RecruitmentDate');
+        $post->startRec = $request->input('startRec');
         $Categories = implode(", ", $request->get('option'));
         $post->Categories = $Categories;
         $post->TotalCommittee = $request->get('TotalCommittee');
@@ -221,6 +224,7 @@ class PostsController extends Controller
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
+        
             
         if($post->poster_image != 'noimage.jpg'){
             // Delete Image
@@ -230,5 +234,9 @@ class PostsController extends Controller
         $post->delete();
         return redirect('/dashboard')->with('success','Post Removed');
 
+    }
+    public function eventhistory(){
+        $posts = POst::orderBy('created_at', 'asc')->paginate(10);
+        return view('posts.eventhistory')->with('posts', $posts);
     }
 }

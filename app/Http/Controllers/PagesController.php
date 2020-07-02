@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\faq;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -17,16 +18,4 @@ class PagesController extends Controller
     	return view('pages.about')->with('title', $title);
     }
 
-    public function services(){
-    	$data = array(
-    		'title' => 'Services',
-    		'services' => ['CommitteeApplication', 'CreateEvent']
-    	);
-    	return view('pages.services')->with($data);
-    }
-
-    public function profile(){
-        $title = 'Profile';
-        return view('pages.profile')->with('title', $title);
-    }
 }

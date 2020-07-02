@@ -1,25 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\User;
-use App\organiserprofile;
 
-class OrganiserProfileController extends Controller
+use Illuminate\Http\Request;
+
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth' , ['except' => ['index','show']]);
-    }
     public function index()
     {
-        $orgpro = organiserprofile::all();
-        return view('organiserprofile.index')->with('organiserprofile', $orgpro);
+        //
     }
 
     /**
@@ -74,17 +68,7 @@ class OrganiserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'desc' => '',
-            
-            // 'poster_image' => 'image|nullable|max:1999',
-        ]);
-
-        $orgpro = organiserprofile::find($id);
-        $orgpro->desc = $request->desc;
-        $orgpro->save();
-
-        return redirect()->back();
+        //
     }
 
     /**

@@ -25,16 +25,30 @@
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+{{-- 
+    <style type="text/css">
+        .main-img {
+            background: url('/image/background1.png');
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
+    </style> --}}
 
 </head>
 <body>
     
     
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar navbar-dark bg-primary">
+    <div id="app" class="main-img">
+        <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781">
             <div class="container">
-               
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="image/logo-6.png" href="" width="100" height="70" alt="">
+                </a>
+                --}}
+                <button class="navbar-toggler" type="button" data-toggle="collapse " data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -57,7 +71,7 @@
                             <a class="nav-link" href="/about">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/services">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="/faq">{{ __('FAQ') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/posts">{{ __('Events') }}</a>
@@ -109,19 +123,27 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/dashboard">
-                                        Dashboard
+                                        <i class="fas fa-columns"></i> Dashboard
                                     </a>
+
+                                    <div class="dropdown-divider"></div>
+
                                     <a class="dropdown-item" href="/organiserprofile">
-                                        Profile
+                                        <i class="fas fa-user"></i> Profile
                                     </a>
-                                    <a class="dropdown-item" href="/posts">
-                                        Event History
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" href="/eventhistory">
+                                        <i class="far fa-calendar-alt"></i> Event History
                                     </a>
+                                    
+                                    <div class="dropdown-divider"></div>
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i> Logout
                                     </a>
 
 

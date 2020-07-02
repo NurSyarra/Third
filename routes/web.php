@@ -29,10 +29,10 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@services');
 Route::get('/profile', 'PagesController@profile');
 
 Route::resource('posts', 'PostsController');
+Route::get('/eventhistory', 'PostsController@eventhistory');
 
 Route::group(['middleware' => 'App\Http\Middleware\OrganiserMiddleware'], function(){
 	Route::match(['get', 'post'], '/organiserOnlyPage/', 'DashboardController@organiser');
@@ -51,5 +51,9 @@ Auth::routes();
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('organiserprofile', 'OrganiserProfileController@index');
-Route::post('organiserprofile', 'OrganiserProfileController@update')->name('organiserprofile.update');
+
+Route::resource('faq', 'FaqController');
+
+Route::resource('organiserprofile', 'OrganiserProfilesController');
+
+Route::resource('manageapply', 'ManageApplyController');

@@ -75,6 +75,10 @@
                     </div>
             </div><hr>
             <div class="form-group">
+                {{Form::label('startRec', 'Recruitment Date')}}
+                {{Form::date('startRec', $post->startRec, ['class' => 'form-control'])}}
+            </div><hr>
+            <div class="form-group">
                 {{Form::label('RecruitmentDate', 'Last Recruitment Date')}}
                 {{Form::date('RecruitmentDate', $post->RecruitmentDate, ['class' => 'form-control'])}}
             </div><hr>

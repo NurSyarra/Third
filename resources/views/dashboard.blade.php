@@ -17,8 +17,9 @@
                         </div>
                     @endif
                     @if(Auth::user()->type == 'organiser') 
-                        <h3>Your Event</h3>
+                        <h3>Your Dashboard</h3>
                         <a href="/posts/create" class="btn btn-primary">Create Recruitment Application</a>
+                        <a href="/manageapply" class="btn btn-primary">Manage Committee</a>
                         <hr>
                         @if(count($posts)>0)
                         <table class="table table-striped">
