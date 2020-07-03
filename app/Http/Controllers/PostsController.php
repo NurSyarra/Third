@@ -57,49 +57,53 @@ class PostsController extends Controller
         $this->validate($request,[
             'Organizer' => 'required',
             'EventName' => 'required',
+            'EventDate' => 'required|date|date_format:Y-m-d',
             'Description' => 'required',
             'EventLocation' => 'required',
             'Collaborator' => 'required',
             'Contact' => 'required',
-            'cover_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'Categories' => 'required',
+            'RecruitmentDate' => 'required',
+            'startRec' => 'required',
+            
+            'poster_image' => 'image|nullable|max:1999',
         ]);
         
+        // Handle DatePicker
+        
 
-        $arrayToString = implode(', ', $request->input('Categories'));
-        $request['Categories'] = $arrayToString;
-
-        //Handle File Upload
-        if($request->hasFile('cover_image')){
-            // Get Filename with the extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            //Get just filename
+        // Handle File Upload
+        if($request->hasFile('poster_image')){
+            //Getfilename with the extension
+            $filenameWithExt = $request->file('poster_image')->getCLientOriginalName();
+            // Get just filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             // Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $extension = $request->file('poster_image')->getClientOriginalExtension();
             // Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            //Upload image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        }else{
+            $fileNameToStore  = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('poster_image')->storeAs('public/poster_images', $fileNameToStore);
+        } else {
             $fileNameToStore = 'noimage.jpg';
         }
-
         // Create Post
 
         $post = new POst;
         $post->Organizer = $request->input('Organizer');
         $post->EventName = $request->input('EventName');
+        $post->EventDate = $request->input('EventDate');
         $post->Description = $request->input('Description');
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
-        $post->Time = $request->input('Time');
+        $post->RecruitmentDate = $request->input('RecruitmentDate');
+        $post->startRec = $request->input('startRec');
+        $Categories = implode(", ", $request->get('option'));
+        $post->Categories = $Categories;
+        $post->TotalCommittee = $request->get('TotalCommittee');
         $post->Contact = $request->input('Contact');
         $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->Categories = $request->input('Categories');
+        $post->poster_image = $fileNameToStore;
         $post->save();
-
         return redirect('/posts')->with('success','Post Created');
 
     }
@@ -125,12 +129,18 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = POst::find($id);
+     
+        //Check if post exists before deleting
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
 
-        //Check for correct user
-        if(auth()->user()->id !== $post->user_id){
+        // Check for correct user
+        if(auth()->user()->id !==$post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
-        return view('posts.edit')-> with('post', $post);
+
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -145,38 +155,50 @@ class PostsController extends Controller
         $this->validate($request,[
             'Organizer' => 'required',
             'EventName' => 'required',
+            'EventDate' => 'required|date|date_format:Y-m-d',
             'Description' => 'required',
             'EventLocation' => 'required',
             'Collaborator' => 'required',
+            'RecruitmentDate' => 'required',
+            'startRec' =>'required',
             'Contact' => 'required',
         ]);
 
-         //Handle File Upload
-        if($request->hasFile('cover_image')){
-            // Get Filename with the extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            //Get just filename
+        // Handle Categories
+        
+
+        // Handle File Upload
+        if($request->hasFile('poster_image')){
+            //Getfilename with the extension
+            $filenameWithExt = $request->file('poster_image')->getCLientOriginalName();
+            // Get just filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             // Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $extension = $request->file('poster_image')->getClientOriginalExtension();
             // Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            //Upload image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            $fileNameToStore  = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('poster_image')->storeAs('public/poster_images', $fileNameToStore);
         }
-
 
         // Create Post
 
         $post = POst::find($id);
         $post->Organizer = $request->input('Organizer');
         $post->EventName = $request->input('EventName');
+        $post->EventDate = $request->input('EventDate');
         $post->Description = $request->input('Description');
         $post->EventLocation = $request->input('EventLocation');
         $post->Collaborator = $request->input('Collaborator');
+        $post->RecruitmentDate = $request->input('RecruitmentDate');
+        $post->startRec = $request->input('startRec');
+        $Categories = implode(", ", $request->get('option'));
+        $post->Categories = $Categories;
+        $post->TotalCommittee = $request->get('TotalCommittee');
         $post->Contact = $request->input('Contact');
-        if($request->hasFile('cover_image')){
-            $post->cover_image = $fileNameToStore;
+        $post->user_id = auth()->user()->id;
+        if($request->hasFile('poster_image')){
+            $post->poster_image = $fileNameToStore;
         }
         $post->save();
 
@@ -192,19 +214,29 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = POst::find($id);
+
+        //Check if post exists before deleting
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+        
         //Check for correct user
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
-        if($post->cover_image != 'noimage.jpg'){
-            // Delete image
-            Storage::delete('public/cover_images/'.$post->cover_image);
+        
+            
+        if($post->poster_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('public/poster_images/'.$post->poster_image);
         }
-        $post->delete();
 
-        return redirect('/posts')->with('success','Post Removed');
+        $post->delete();
+        return redirect('/dashboard')->with('success','Post Removed');
 
     }
-
-    
+    public function eventhistory(){
+        $posts = POst::orderBy('created_at', 'asc')->paginate(10);
+        return view('posts.eventhistory')->with('posts', $posts);
+    }
 }
