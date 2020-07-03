@@ -8,7 +8,11 @@
                 <div class="card-header">Create Recruitment Application</div>
                     <div class="card-body">      
                     {!! Form::open(['action' => 'PostsController@store', 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
+
                 		<div class="form-group">
+
+                        <div class="form-group">
+
                             {{Form::label('Organizer', 'Organizer')}}
                             {{Form::text('Organizer', (Auth::user()->name), ['class' => 'form-control','placeholder' =>'Organizer'])}}
                         </div><hr>
@@ -85,8 +89,13 @@
                         <div class="form-group">
                             {{Form::file('poster_image')}}
                         </div><hr>
+
                 		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
             		{!! Form::close() !!}
+
+                        {{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
+                    {!! Form::close() !!}
+
         </div>
     </div>
 </div>

@@ -53,13 +53,19 @@
         <div class="col-lg-8 order-lg-2">   
         <h1>Events</h1>
         @if(count($posts) > 0)
+<<<<<<< HEAD
         	@foreach($posts as $post)
         		<div class="well">
+=======
+            @foreach($posts as $post)
+                <div class="well">
+>>>>>>> origin/updated
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
                                 <img style="width:100%" src="/storage/poster_images/{{$post->poster_image}}">
                         </div>
                         <div class="col-md-8 col-sm-8">      
+<<<<<<< HEAD
         			         <h3><a href="/posts/{{$post->id}}">{{$post->EventName}}</a></h3>
         			         <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
                         </div>
@@ -69,6 +75,17 @@
         	{{$posts->links()}}
         @else
         	<p>No upcoming events</p>
+=======
+                             <h3><a href="/posts/{{$post->id}}">{{$post->EventName}}</a></h3>
+                             <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            {{$posts->links()}}
+        @else
+            <p>No upcoming events</p>
+>>>>>>> origin/updated
         @endif
                 </div>
         </div>

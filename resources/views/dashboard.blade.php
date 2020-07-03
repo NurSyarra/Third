@@ -2,7 +2,12 @@
 
 @section('content')
 
-<br><br>
+<br>
+ <div id="app">        
+        <main class="py-4">
+            <div class="container">
+                <br>
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -46,6 +51,7 @@
                         @endif
                     </div>
                 </div>
+
                 @else
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
@@ -55,10 +61,14 @@
                         Super Admin Page: <a href="{{ url('/') }}/superAdminOnlyPage">{{ url('/') }}/super_adminOnlyPage</a>
                         Member Page: <a href="{{ url('/') }}/memberOnlyPage">{{ url('/') }}/memberOnlyPage</a>
                     </div>
+
                 </div>
             </div>
             @endif
         </div>
     </div>
 </div>
+</main>
+</div>
+
 @endsection

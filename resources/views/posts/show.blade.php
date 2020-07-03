@@ -1,4 +1,5 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -13,6 +14,21 @@ p.ex1 {
 @extends('layouts.app')
 
 @section('content')
+
+
+@if (session()->has('Successmessage'))
+<div class="alert alert-success">
+  <strong> {{session()->get('Successmessage')}} </strong><a href="/Studentdashboard" class="alert-link">Click here to view the dashboard</a>
+</div>
+@endif
+
+@if (session()->has('Alertmessage'))
+<div class="alert alert-danger">
+  {{session()->get('Alertmessage')}}
+</div>
+@endif
+
+
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-12 bg-primary p-2 text-white mt-2 text-center text-capitalize">
@@ -211,8 +227,13 @@ p.ex1 {
                                 <a href="/posts/{{$post->id}}/edit" class="btn btn-info">Edit</a>
                                 <br><br>
                                 {{Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])}}
+
                                 	{{Form::hidden('_method', 'DELETE')}}
                                 	{{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+
                                 {{Form::close()}}
                             @endif
                     {{-- @endif --}}
@@ -307,10 +328,42 @@ p.ex1 {
                 <hr>
                 <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
                 <hr>                    
+
                 <a href="" class="btn btn-info">Apply</a>
+
+                <a href="" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Apply</a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Apply for this Event</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Confirm to apply for this event?
+                        <p>You cannot cancel this action once you click confirm</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Save changes</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  
+
             @endif
     @endguest
         </div>
     </div>
+
 </div>      
+
+</div> 
+<br>     
+
 @endsection

@@ -53,7 +53,21 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\POst');
     }
-    
+
+
+       public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+    public function organiserprofiles(){
+        return $this->hasOne(organiserprofile::class);
+    }
+
+    public function ApplyEvent(){
+        return $this->hasMany(ApplyEvent::class);
+    }
+
+
     public function organiserprofile(){
         return $this->hasOne('App\OrganiserProfiles');
     }

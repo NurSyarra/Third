@@ -10,6 +10,7 @@
         <div class="col-lg-8 order-lg-2">          
         <h1>EDIT RECRUITMENT APPLICATION</h1>
         {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
+
     		<div class="form-group">
     			{{Form::label('Organizer', 'Organizer')}}
     			{{Form::text('Organizer', $post->Organizer, ['class' => 'form-control','placeholder' =>'Organizer'])}}
@@ -18,6 +19,16 @@
     			{{Form::label('EventName', 'EventName')}}
     			{{Form::text('EventName', $post->EventName, ['class' => 'form-control','placeholder' =>'EventName'])}}
     		</div><hr>
+
+            <div class="form-group">
+                {{Form::label('Organizer', 'Organizer')}}
+                {{Form::text('Organizer', $post->Organizer, ['class' => 'form-control','placeholder' =>'Organizer'])}}
+            </div><hr>
+            <div class="form-group">
+                {{Form::label('EventName', 'EventName')}}
+                {{Form::text('EventName', $post->EventName, ['class' => 'form-control','placeholder' =>'EventName'])}}
+            </div><hr>
+
             <div class="form-group">
                 {{Form::label('EventDate', 'Event Date')}}
                 {{Form::date('EventDate', $post->EventDate, ['class' => 'form-control'])}}
@@ -95,8 +106,13 @@
                 {{Form::file('poster_image')}}
             </div> <hr>
             {{Form::hidden('_method', 'PUT')}}
+
     		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
 		{!! Form::close() !!}
+
+            {{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
+        {!! Form::close() !!}
+
         </div>
     </div>
 </div>

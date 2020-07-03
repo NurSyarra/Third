@@ -93,19 +93,28 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+<<<<<<< HEAD
                                     <a class="dropdown-item" href="">
                                         Dashboard
+=======
+                                    <a class="dropdown-item" href="/Studentdashboard">
+                                        <i class="fas fa-columns"></i> Dashboard
+>>>>>>> origin/updated
                                     </a>
                                     <a class="dropdown-item" href="/profile">
-                                        Profile
+                                       <i class="fas fa-user"></i> Profile 
                                     </a>
                                     <a class="dropdown-item" href="">
+<<<<<<< HEAD
                                         Notification
+=======
+                                        <i class="fa fa-bell" ></i> Notification
+>>>>>>> origin/updated
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i> Logout
                                     </a>
 
 

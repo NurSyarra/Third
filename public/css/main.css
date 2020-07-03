@@ -5,7 +5,7 @@
 
  .reminder
  {
- 	margin: 15px;
+  margin: 15px;
  }
 
  .custom-file-control
@@ -18,8 +18,8 @@
  }
 
  .img-sizing{
- 	height: 100px;
- 	width: 100px;
+  height: 100px;
+  width: 100px;
  }
 
  
@@ -63,4 +63,76 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#about_title{
+ font-family: Cambria; 
+ font-size: 40px; 
+ font-style: normal; 
+ font-variant: normal; 
+ font-weight: 300; 
+ line-height: 27.9px; 
+ padding: 40px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.padding-column{
+  padding-right: 70px;
+  padding-left: 70px;
+}
+.img-size{
+  height: 400px;
+  width: 200px;
+}
+.column-font { 
+  font-family: Cambria,Georgia,serif; 
+  font-weight: 700; 
+
+}
+.padding{
+  padding-left: 70px;
+}
+
+.card-img-overlay {
+  background-color: rgba(#000, 0.4);
+}
+
+.img-size{
+  height: 30%;
+}
+
+  /* Create two equal columns that floats next to each other */
+.column_list {
+  float: left;
+  width: 50%;
+  height: auto; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row_list:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.notify{
+  right: 25%;
+}
+
+.upcomingEvent{
+  line-height: 0.5;
 }
