@@ -43,7 +43,7 @@
 
   <!-- Card image -->
   <div class="view overlay">
-    <img class="card-img-top" src="{{ asset($i->cover_image) }}" alt="Card image cap">
+    <img class="card-img-top" src="/storage/poster_images/{{$i->poster_image}}" alt="Card image cap">
     <a>
       <div class="mask rgba-white-slight"></div>
     </a>
