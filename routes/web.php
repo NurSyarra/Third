@@ -30,7 +30,6 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
-Route::get('/organiserprofile', 'PagesController@organiserprofile');
 
 Route::resource('posts', 'PostsController');
 
@@ -44,7 +43,11 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	Route::match(['get', 'post'], '/adminOnlyPage/', 'DashboardController@admin');
 });
 
-Auth::routes();
+//student profile
+Route::get('/profile', 'UserController@index')->name('profile.index');
+Route::post('/profile', 'UserController@store')->name('profile.store');
+Route::patch('/profile', 'UserController@update')->name('profile.update');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
@@ -52,24 +55,31 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/editprofile', 'UserController@create');
+//organiser profile
+Route::get('organiserprofile', 'OrganiserProfileController@index');
+Route::post('organiserprofile', 'OrganiserProfileController@update')->name('organiserprofile.update');
 
-Route::post('/editprofile', 'UserController@store')->name('store');
-
-Route::get('/profile', 'UserController@index')->name('profile');
-
+//event category
 Route::get('education', 'PagesController@display_education')->name('education');
-
 Route::get('festival', 'PagesController@display_fest')->name('festival');
-
 Route::get('animals', 'PagesController@display_animals')->name('animals');
-
 Route::get('culture', 'PagesController@display_culture')->name('culture');
-
 Route::get('community', 'PagesController@display_community')->name('community');
-
 Route::get('festival', 'PagesController@display_fest')->name('festival');
-
 Route::get('health', 'PagesController@display_health')->name('health');
 
 //Route::post('pages/profile', );
+
+
+Route::get('/Studentdashboard', 'DashboardController@index')->name('dashboard');
+
+
+//apply
+Route::get('apply/{id}', 'ApplyEventController@store')->name('apply');
+Route::get('/Studentdashboard', 'ApplyEventController@show')->name('studentdashboard.show');
+
+Route::resource('faq', 'FaqController');
+
+Route::resource('organiserprofile', 'OrganiserProfilesController');
+
+Route::resource('manageapply', 'ManageApplyController');
