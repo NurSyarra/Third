@@ -1,60 +1,96 @@
 @extends('layouts.app')
 
 @section('content')
- <div id="app">        
-        <main class="py-4">
-            <div class="container">
-                <br>
-
-        <h3>CREATE POST</h3>
-        <br>
-        {!! Form::open(['action' => 'PostsController@store', 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
-    		<div class="form-group">
-                {{Form::label('Organizer', 'Organizer')}}
-                {{Form::text('Organizer', '', ['class' => 'form-control','placeholder' =>'Organizer'])}}
-            </div>
-            <div class="form-group">
-                {{Form::label('Event Name', 'EventName')}}
-                {{Form::text('EventName', '', ['class' => 'form-control','placeholder' =>'EventName'])}}
-            </div>
-            <div class="form-group">
-                {{Form::label('Description', 'Description')}}
-                {{Form::textarea('Description', '', ['class' => 'form-control','placeholder' =>'Description', 'rows' => 5, 'cols' => 40])}}
-            </div>
-            <div class="form-group">
-                {{Form::label('Event Location', 'EventLocation')}}
-                {{Form::text('EventLocation', '', ['class' => 'form-control','placeholder' =>'EventLocation'])}}
-            </div>
-            <div class="form-group" >
-                <label>Date & Time of the Event: </label><br>                
-                <input type="datetime-local" name="Time">
-            </div>
-
-            <div class="form-group">
-                {{Form::label('Collaborator', 'Collaborator')}}
-                {{Form::textarea('Collaborator', '', ['class' => 'form-control','placeholder' =>'Collaborator', 'rows' => 5, 'cols' => 40])}}
-            </div>        
-            <div class="form-group">
-                {{Form::label('Contact', 'Contact')}}
-                {{Form::text('Contact', '', ['class' => 'form-control','placeholder' =>'Contact'])}}
-            </div>
-            <div class="form-group">
-                {{Form::file('cover_image')}}
-            </div>
-            <div class="form-group">
-                <label>Event Categories: </label><br>
-                <input type="checkbox" name="Categories[]" value="education"><label>Education</label>
-                <input type="checkbox" name="Categories[]" value="animals"><label>Animals & Nature</label>
-                <input type="checkbox" name="Categories[]" value="culture"><label>Culture & Arts</label>
-                <input type="checkbox" name="Categories[]" value="community"><label>Community</label>
-                <input type="checkbox" name="Categories[]" value="fest"><label>Festival</label>
-                <input type="checkbox" name="Categories[]" value="health"><label>Health</label>
-            </div>
-            <br>
-    		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
-		{!! Form::close() !!}
-
+<div class="container">
+    <div class="row my-2 justify-content-center">
+        <div class="col-lg-8 order-lg-2">
+            <div class="card">
+                <div class="card-header">Create Recruitment Application</div>
+                    <div class="card-body">      
+                    {!! Form::open(['action' => 'PostsController@store', 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
+                        <div class="form-group">
+                            {{Form::label('Organizer', 'Organizer')}}
+                            {{Form::text('Organizer', (Auth::user()->name), ['class' => 'form-control','placeholder' =>'Organizer'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('EventName', 'Event Name')}}
+                            {{Form::text('EventName', '', ['class' => 'form-control','placeholder' =>'Event Name'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('EventDate', 'Event Date')}}
+                            {{Form::date('EventDate', '', ['class' => 'form-control'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('Description', 'Description')}}
+                            {{Form::textarea('Description', '', ['class' => 'form-control','placeholder' =>'Description', 'rows' => 5, 'cols' => 40])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('EventLocation', 'Event Location')}}
+                            {{Form::text('EventLocation', '', ['class' => 'form-control','placeholder' =>'Event Location'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('Collaborator', 'Collaborator')}}
+                            {{Form::textarea('Collaborator', '', ['class' => 'form-control','placeholder' =>'Collaborator', 'rows' => 5, 'cols' => 40])}}
+                        </div><hr>
+                        <div class="form-group">
+                            <label>Categories</label>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Education"> Education
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Animals and Nature"> Animals and Nature
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Culture and Arts"> Culture and Arts
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Community Service"> Community Service
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Festival"> Festival
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="option[]" value="Health"> Health
+                                    </label>
+                                </div>
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('startRec', 'Recruitment Date')}}
+                            {{Form::date('startRec', '', ['class' => 'form-control'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('RecruitmentDate', 'Last Recruitment Date')}}
+                            {{Form::date('RecruitmentDate', '', ['class' => 'form-control'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::label('TotalCommittee', 'Total Committees Needed')}}
+                            {{Form::selectRange('TotalCommittee', 0, 1000, ['class' => 'field'])}}
+                        </div><hr>
+                        
+                        <div class="form-group">
+                            {{Form::label('Contact', 'Contact')}}
+                            {{Form::text('Contact', '', ['class' => 'form-control','placeholder' =>'Contact'])}}
+                        </div><hr>
+                        <div class="form-group">
+                            {{Form::file('poster_image')}}
+                        </div><hr>
+                        {{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
+                    {!! Form::close() !!}
+        </div>
     </div>
-</main>
 </div>
+</div>
+</div></div>
+
 @endsection
