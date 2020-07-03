@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Profile;
 
 class User extends Authenticatable
 {
@@ -42,7 +41,19 @@ class User extends Authenticatable
         return $this->hasMany('App\POst');
     }
 
-    public function profile(){
+       public function profile(){
         return $this->hasOne(Profile::class);
+    }
+
+    public function organiserprofiles(){
+        return $this->hasOne(organiserprofile::class);
+    }
+
+    public function ApplyEvent(){
+        return $this->hasMany(ApplyEvent::class);
+    }
+
+    public function organiserprofile(){
+        return $this->hasOne('App\OrganiserProfiles');
     }
 }
