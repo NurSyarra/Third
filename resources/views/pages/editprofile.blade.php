@@ -10,7 +10,6 @@
 <div class="container">
     <br>
     <center>
-        <div><img src="/storage/{{$user->profile->avatar}}" ></div>
     </center>
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
