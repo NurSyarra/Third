@@ -2,9 +2,7 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans" />@extends('layouts.app')
 
 @section('content')
-<br><br>
 <center><h1 id="about_title"><?php echo $title; ?></h1></center>  
-<br><br>
 <div class="padding-column">
 <div class="row">
   <div class="column">
@@ -28,15 +26,16 @@
     <center><h2 class="column-font">Committee Manager</h2></center><hr><br>
     <p>In a year, surely there are many events that are being held within the campus.</p>
     <p>Most of the times, these events are being handled by a group of students and surely, it
-	requires a lot of manpower to make the event become successful.</p>
-	<p>This website is specifically designed and developed for IIUM students as developers have noticed that there is no specific application or platform is used to find the committee members for an event.</p>
-	<p>Committee Manager then work as a system that manage the recruitment process.</p>
-	
+  requires a lot of manpower to make the event become successful.</p>
+  <p>This website is specifically designed and developed for IIUM students as developers have noticed that there is no specific application or platform is used to find the committee members for an event.</p>
+  <p>Committee Manager then work as a system that manage the recruitment process.</p>
+  
  
   </div>
 </div>
 </div>
 <br><br>
-<p class="padding">Any inquiry? <a href="/services">Click Here</a></p>
+<p class="padding">Any inquiry? <a href="faq">Click Here</a></p>
     
 @endsection
+
