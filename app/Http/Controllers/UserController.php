@@ -63,15 +63,7 @@ class UserController extends Controller
         $profile->phone = $request->input('phone');
         $profile->skills = $request->input('skills');
 
-        if(request('avatar')) {
-            $imagePath = request('avatar')->store('profile', 'public');
-
-            $avatar = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
-            $avatar->save();
-        }
         
-        $profile->avatar = $request->input('avatar');
-
 
 
         $profile->save();
@@ -120,22 +112,14 @@ class UserController extends Controller
             'level' => '',
             'phone' => '',
             'skills' => '',
-            'avatar' => '',
         ]);
 
 
 
-        if(request('avatar')) {
-            $imagePath = request('avatar')->store('profile', 'public');
-
-            $avatar = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
-            $avatar->save();
-        }
-
+       
 
         auth()->user()->profile->update(array_merge(
             $data,
-            ['avatar' => $imagePath],
 
         ));
 
