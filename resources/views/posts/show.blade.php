@@ -48,7 +48,7 @@ p.ex1 {
                     <label><b> Organizer</b></label>
                 </div>
                 <div class="col-md-4">
-                    <p class="ex1"><a href="/organiserprofile/{{Auth::user()->id}}">{!!$post->Organizer!!}</a></p>
+                    <p class="ex1">{!!$post->Organizer!!}</a></p>
                 </div>
             </div>
             <div class="row">
@@ -333,11 +333,11 @@ p.ex1 {
                       </div>
                       <div class="modal-body">
                         Confirm to apply for this event?
-                        <p>You cannot cancel this action once you click confirm</p>
+                        <p></p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Save changes</a>
+                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Confirm</a>
                       </div>
                     </div>
                   </div>
