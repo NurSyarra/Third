@@ -28,14 +28,14 @@
               @else
               Pending
               @endif</p>
-              <a href="#" class="btn btn-info">View details</a>
+              <a href="{{ route('details.show', ['id'=>$apply->id]) }}" class="btn btn-info">View details</a>
+            
             </div>
           </div>
         </div>
         @endforeach
       </div>
 
-	
         
         @else
           <p>You haven't applied for any event</p>
