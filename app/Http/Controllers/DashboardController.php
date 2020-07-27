@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use App\POst;
+use App\faq;
 
 class DashboardController extends Controller
 {
@@ -26,7 +29,9 @@ class DashboardController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('dashboard')->with('posts', $user->posts);
+        $posts = $user->posts;
+        $org_posts = POst::all();
+        return view('dashboard', compact('posts', 'org_posts'));
     }
 
     public function organiser(Request $req){
