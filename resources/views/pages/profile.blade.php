@@ -10,6 +10,8 @@
 <div class="container">
     <br>
     <center>
+        <img src="/storage/poster_images/" style="height: 25%; width: 19%; border-radius: 50%; padding-bottom: 10px">
+        <br>             
     </center>
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
@@ -37,7 +39,7 @@
                             
 
                         <div class="form-group row">
-                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Matric No.') }}</label>
+                            <label for="matric_no" class="col-lg-3 col-form-label form-control-label">{{ __('Matric Nom. ') }} </label>
 
                             <div class="col-lg-9">
                                 <input type="textarea" id="matric" class="form-control @error('matric') is-invalid @enderror" name="matric"
