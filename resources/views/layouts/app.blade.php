@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
 
     <!-- mdbootsrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -40,14 +41,15 @@
 </head>
 <body>
     
-    
+   
     <div id="app" class="main-img">
-        <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781">
+        <div id="content-wrap">
+        <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781; padding: 0px">
             <div class="container">
-                {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="image/logo-6.png" href="" width="100" height="70" alt="">
+                 <a class="navbar-brand" href="{{ url('/dashboard') }}" >
+                    <img src="image/cm_logo2.png" href="" width="250" height="70" style="display: block" alt="">
                 </a>
-                --}}
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse " data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,8 +101,6 @@
                                     <a class="dropdown-item" href="/profile">
                                        <i class="fas fa-user"></i> Profile 
                                     </a>
-                                    <a class="dropdown-item" href="">
-                                        <i class="fa fa-bell" ></i> Notification
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -167,6 +167,23 @@
 
 
     </div>
+
+     <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p class="h6">© All right Reserved. Committee Manager</p>
+                </div>
+                <hr>
+            </div>  
+        </div>
+    </section>
+    <!-- ./Footer -->
+
+</div>
+
+   
 
     <!-- mdbootstrap -->
     <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
