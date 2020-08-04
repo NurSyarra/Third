@@ -10,7 +10,7 @@
   
   <div class="carousel-inner">
     <div class="carousel-item active img-size">
-      <img class="d-block w-100" src="https://lh3.googleusercontent.com/proxy/QnXheGFvwdRTZUkHHOzFlsK_gl-UkXj41D9gMoM66X0-0wxkU05Pduhoq6147rldOuSfpp94xwA6jQFR4m5Vpm90jXIGjOpTGN2z" alt="First slide">
+      <img class="d-block w-100" src="image/22iium_1503316576.jpg" alt="First slide">
     </div>
     <div class="carousel-item img-size">
       <img class="d-block w-100" src="https://news.iium.edu.my/wp-content/uploads/2017/05/DSCN8458.jpg" alt="Second slide">
