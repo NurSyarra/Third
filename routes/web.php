@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Notifications\SuccessfullyApplyforEvent;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 /*Route::get('/hello', function () {
     //return view('welcome');
@@ -51,7 +57,6 @@ Route::patch('/profile', 'UserController@update')->name('profile.update');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -76,10 +81,30 @@ Route::get('/Studentdashboard', 'DashboardController@index')->name('dashboard');
 
 //apply
 Route::get('apply/{id}', 'ApplyEventController@store')->name('apply');
-Route::get('/Studentdashboard', 'ApplyEventController@show')->name('studentdashboard.show');
+Route::get('/Studentdashboard', 'ApplyEventController@index')->name('studentdashboard.index');
+Route::get('Studentdashboard/{id}', 'ApplyEventController@show')->name('details.show');
+Route::delete('Studentdashboard', 'ApplyEventController@destroy')->name('application.destroy');
+
+//Route::get('/Studentdashboard', 'ApplyEventController@Email')->name('studentdashboard.email');
 
 Route::resource('faq', 'FaqController');
 
 Route::resource('organiserprofile', 'OrganiserProfilesController');
 
 Route::resource('manageapply', 'ManageApplyController');
+
+Route::resource('Notifications', 'NotificationController');
+
+
+
+Route::get('/{id}', 'EmailNotificationController@show')->name('remind.show')->middleware('auth');
+
+Route::get('/posts/{id}', 'PostsController@show')->name('posts.show');
+
+Route::group([ 'middleware' => 'auth' ], function () {
+    // ...
+    Route::get('/notifications', 'NotificationController@notifications');
+});
+
+
+
