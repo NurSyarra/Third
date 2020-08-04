@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
-@extends('layouts.app')
+@extends('layouts.app_carousel')
 
 @section('content')
 
