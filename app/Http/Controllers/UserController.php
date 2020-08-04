@@ -17,8 +17,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(User $user)
     {
+        /*$user =  User::find($user);
+
+        return view('pages.editprofile', compact('user'));*/
+
 
         $user = DB::table('profile')->where('user_id', Auth::user()->id)->first();
 
@@ -54,6 +63,22 @@ class UserController extends Controller
     {
 
         
+        if(request()->hasFile('image')){
+            //Getfilename with the extension
+            $filenameWithExt = request()->file('image')->getCLientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = request()->file('image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore  = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = request()->file('image')->storeAs('public/profile_image', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.png';
+        }
+
+        
         $profile = new Profile;
 
         $profile->user_id = auth()->user()->id;
@@ -62,13 +87,20 @@ class UserController extends Controller
         $profile->level = $request->input('level');
         $profile->phone = $request->input('phone');
         $profile->skills = $request->input('skills');
+        $profile->image = $fileNameToStore;
+        $profile->save();
 
+        /*if(request('image')) {
+            $imagePath = request('image')->store('profile_image', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }*/
         
 
 
-        $profile->save();
 
-        return redirect()->route('profile.index')->with('successMsg', 'Successfully update profile');
+        return redirect()->route('profile.index')->with('successMsg', 'Successfully update profile'); 
 
     }
 
@@ -105,23 +137,46 @@ class UserController extends Controller
     public function update(User $user)
     {
     
-           
+
         $data = request()->validate([
-            'matric' =>'',
+            'matric' =>'required',
             'kulliyyah' => '',
             'level' => '',
-            'phone' => '',
+            'phone' => 'required',
             'skills' => '',
+            'image' => 'image|nullable|max:1999',
         ]);
 
+        if(request()->hasFile('image')){
+            //Getfilename with the extension
+            $filenameWithExt = request()->file('image')->getCLientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = request()->file('image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore  = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = request()->file('image')->storeAs('public/profile_image', $fileNameToStore);
+        }
+        else {
+            $fileNameToStore = 'noimage.png';
+        }
 
+        /*if(request('image')) {
+            $imagePath = request('image')->store('profile_image', 'public');
 
-       
-
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }*/
+   
         auth()->user()->profile->update(array_merge(
             $data,
-
+            ['image' =>  $fileNameToStore]
+        
         ));
+
+        
 
         return redirect()->back();
     }
