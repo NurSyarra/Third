@@ -19,7 +19,8 @@
           <div class="card" style="width: 310px">
             <div class="card-body">
               <center><h5 class="card-title">{{ $apply->EventName }}</h5>
-              <img class="card-img" src="/storage/poster_images/{{$apply->poster_image}}" alt="poster_image" style="height:250px; width: 260px">
+
+              <img class="card-img" src=asset('/storage/poster_images/{{$apply->poster_image}}') alt="poster_image" style="height:250px; width: 260px">
               </center><hr>
               
               <p class="card-text">Status of application: 
