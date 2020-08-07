@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class EventHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,9 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('eventhistory')->with('posts', $user->posts);
     }
 
     /**

@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use App\POst;
+use App\Profile;
+use App\User;
+use App\ApplyEvent;
+use DB;
 use Illuminate\Http\Request;
 
 class ManageApplyController extends Controller
@@ -11,9 +16,20 @@ class ManageApplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('manageapply.index');
+         $apply = DB::table('apply_events')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                
+                ->select('apply_events.event_id', 'p_osts.EventName', 'p_osts.user_id', 'p_osts.poster_image', 'apply_events.user_id', DB::raw('count(*) as cnt')) 
+                ->where('p_osts.user_id', '=', auth()->user()->id)
+                ->groupBy('apply_events.event_id')
+
+                ->get();
+                
+
+        return view('manageapply.index', compact('apply'));
+
     }
 
     /**
@@ -32,10 +48,6 @@ class ManageApplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -43,9 +55,18 @@ class ManageApplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function applylist(Request $request)
     {
-        //
+        $apply = DB::table('apply_events')
+                ->join('users', 'apply_events.user_id', '=', 'users.id')
+                ->join('profile', 'apply_events.user_id', '=', 'profile.user_id')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                ->where('apply_events.event_id', '=', $request->id) 
+                ->select('p_osts.EventName', 'apply_events.id', 'apply_events.user_id', 'apply_events.event_id', 'users.name', 'users.email', 'profile.matric', 'profile.kulliyyah', 'profile.level', 'profile.phone', 'profile.skills', 'apply_events.created_at')
+                ->orderBy('apply_events.id')    
+                ->get();
+
+       return view('manageapply.applylist', compact('apply'));
     }
 
     /**
@@ -68,7 +89,9 @@ class ManageApplyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+
     }
 
     /**
@@ -79,6 +102,10 @@ class ManageApplyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apply = ApplyEvent::find($request->id);
+
+        $apply->delete();
+        
+        return redirect('manageapply.applylist')->with('success','Application rejected');
     }
 }

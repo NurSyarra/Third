@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+use App\OrganiserProfiles;
+use Illuminate\Support\Facades\DB;
+use Auth;
+use Intervention\Image\Facades\Image;
+
 
 class OrganiserProfilesController extends Controller
 {
@@ -15,9 +20,21 @@ class OrganiserProfilesController extends Controller
      */
     public function index(User $user)
     {
-        $user =  User::find($user);
+        $org = DB::table('organiser_profiles')
+                ->join('users', 'users.id', '=', 'organiser_profiles.user_id')
+                ->select('users.*', 'organiser_profiles.*')
+                ->where('user_id', Auth::user()->id)
+                ->first();
 
-        return view('organiserprofile.index', compact('user'));
+        if(!$org){
+             //user is not found 
+            return view('organiserprofile.index')->with('org', Auth::user());
+        }
+        if($org){
+             // user found 
+            return view('organiserprofile.edit')->with('org', Auth::user());
+
+        }
     }
 
     /**
@@ -36,17 +53,36 @@ class OrganiserProfilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $data = request()->validate([
-    //         'about' => '',
-    //         'url' => '',
-    //     ]);
- 
-    //     auth()->user()->organiserprofile->update($data);
+    public function store(Request $request)
+    {
+        
+        $org = new OrganiserProfiles;
 
-    //     return redirect('organiserprofile.index')->with('success','Profile Updated');
-    // }
+        $org->user_id = auth()->user()->id;
+        $org->about = $request->input('about');
+        $org->url = $request->input('url');
+        
+        //handle avatar
+        if(request()->hasFile('avatar')){
+            //Getfilename with the extension
+            $filenameWithExt = request()->file('avatar')->getCLientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = request()->file('avatar')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore  = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = request()->file('avatar')->storeAs('public/avatars', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.png';
+        }
+
+        $org->avatar = $fileNameToStore;
+        $org->save();
+
+        return redirect()->route('organiserprofile.index')->with('successMsg', 'Successfully update profile');
+    }
 
     /**
      * Display the specified resource.
@@ -54,10 +90,7 @@ class OrganiserProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -84,6 +117,7 @@ class OrganiserProfilesController extends Controller
         $data = request()->validate([
             'about' => '',
             'url' => '',
+            'type' => 'organiser',
             'avatar' => 'image|nullable|max:1999',
         ]);
 
@@ -107,7 +141,19 @@ class OrganiserProfilesController extends Controller
             ['avatar' => $fileNameToStore]
         ));
 
-        return redirect("/organiserprofile/{$user->id}");
+        return redirect()->back();
+    }
+
+    public function GuestView(Request $request)
+    {
+
+        $org = DB::table('organiser_profiles')
+                ->join('users', 'users.id', '=', 'organiser_profiles.user_id')
+                ->where('organiser_profiles.user_id', '=', $request->id)
+                ->select('users.name', 'users.email', 'users.type', 'organiser_profiles.about','organiser_profiles.url', 'organiser_profiles.avatar')
+                ->get();
+
+        return view('organiserprofile.guestview', compact('org'));
     }
 
     /**
@@ -118,6 +164,9 @@ class OrganiserProfilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $org = OrganiserProfiles::find($id);
+
+        $org->cancel();
+        return view('organiserprofile.edit')->with('org', Auth::user());
     }
 }

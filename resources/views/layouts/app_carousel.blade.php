@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
-
-    {{-- <style type="text/css">
+{{-- 
+    <style type="text/css">
         .main-img {
             background: url('/image/background1.png');
             background-position: center center;
@@ -41,15 +41,15 @@
 </head>
 <body>
     
-    
-        <div id="app" class="main-img">
+   
+    <div id="app" class="main-img">
         <div id="content-wrap">
-        <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781; padding: 0px">
+        <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781">
             <div class="container">
-                 <a class="navbar-brand" href="{{ url('/dashboard') }}" >
-                    <img src="image/logom.png" href="" width="250" height="70" style="display: block" alt="">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="image/logo-6.png" href="" width="100" height="70" alt="">
                 </a>
-                
+                --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse " data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -95,21 +95,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                       
-
                                     <a class="dropdown-item" href="/Studentdashboard">
                                         <i class="fas fa-columns"></i> Dashboard
-
                                     </a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/profile">
                                        <i class="fas fa-user"></i> Profile 
                                     </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="">
-                                        <i class="fa fa-bell" ></i> Notification
                                     </a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -168,7 +160,6 @@
             </div>
         </nav>
                     @include('inc.messages')
-                   
 
                 @yield('content')
 

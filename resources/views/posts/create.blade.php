@@ -1,12 +1,20 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row my-2 justify-content-center">
         <div class="col-lg-8 order-lg-2">
-            <div class="card">
-                <div class="card-header">Create Recruitment Application</div>
-                    <div class="card-body">      
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Create Committee Applycation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">    
                     {!! Form::open(['action' => 'PostsController@store', 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
 
                 		<div class="form-group">
@@ -89,12 +97,14 @@
                         <div class="form-group">
                             {{Form::file('poster_image')}}
                         </div><hr>
-
+                        </div>
+                      <div class="modal-footer">
                 		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
             		{!! Form::close() !!}
-
-                        {{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
-                    {!! Form::close() !!}
+                        </div>
+                    </div>
+                  </div>
+                </div>
 
         </div>
     </div>
@@ -103,3 +113,4 @@
 </div></div>
 
 @endsection
+ --}}

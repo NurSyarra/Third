@@ -16,9 +16,10 @@ class CreateOrganiserProfilesTable extends Migration
         Schema::create('organiser_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('type')->default('organiser');
             $table->string('about')->nullable();
             $table->string('url')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('noimage.png');
             $table->timestamps();
 
             $table->index('user_id');

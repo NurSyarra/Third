@@ -1,44 +1,67 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <div class="row my-2 justify-content-center">
-        @if(Auth::user()->type == 'organiser')
-        <img src="/storage/avatars/{{Auth::user()->organiserprofile->avatar}}" class="w3-border" style="padding:4px;width:30%" />
-    	<div class="col-md-6">
-        	<div class="card">
-        		<div class="card-header">User Description</div>
-        		<div class="card-body">
-        			<p><b>Name: </b>{{Auth::user()->name}}</p>
-        			<p><b>Email: </b>{{Auth::user()->email}}</p>
-        			<p><b>User: </b>{{Auth::user()->type}}</p>
-
-                    <p><b>Description: </b>{{Auth::user()->organiserprofile->about}}</p>
-                    <p><b>Links: </b><a href="#">{{Auth::user()->organiserprofile->url }} </p>
-                    
-                    <a href="/organiserprofile/{{Auth::user()->id}}/edit" class="btn btn-info">Edit</a>
-                    </div>
-        		</div>
-        	</div>
-            @endif
-            @if(Auth::user()->type == 'student')
-                <img src="/storage/avatars/{{Auth::user()->organiserprofile->avatar}}" class="w3-border" style="padding:4px;width:30%" />
-                <div class="col-md-6">
-                    <div class="card">
-                    <div class="card-header">User Description</div>
-                    <div class="card-body">
-                        <p><b>Name: </b>{{Auth::user()->name}}</p>
-                        <p><b>Email: </b>{{Auth::user()->email}}</p>
-                        <p><b>User: </b>{{Auth::user()->type}}</p>
-
-                        <p><b>Description: </b>{{Auth::user()->organiserprofile->about}}</p>
-                        <p><b>Links: </b><a href="#">{{Auth::user()->organiserprofile->url }} </p>
-                    </div>
+    <div class="row my-5 justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header"><center>USER PROFILE</center></div>
+                <div class="card-body">
+                    <center> <img src="/storage/avatars/noimage.png" class="w3-border" style="padding:4px;width:30%" /></center>
+            <br>
+                    <p><b>Name: </b>{{Auth::user()->name}}</p>
+                    <p><b>Email: </b>{{Auth::user()->email}}</p>
+                    <p><b>User: </b>{{Auth::user()->type}}</p>
+                    <p><b>Description: </b>{{Auth::user()->organiserprofile->about ?? ''}}</p>
+                    <p><b>Links: </b><a href="#">{{Auth::user()->organiserprofile->url ?? ''}}</a> </p>
                 </div>
             </div>
-            @endif
+        </div>
+        <br>
+        <div class="col-md-6"> 
+            <div class="card">
+                <div class="card-header"><center>UPDATE USER PROFILE</center></div>
+                <div class="card-body">
+                <form action="{{ route('organiserprofile.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label>Name</label>
+                        <textarea class="form-control" rows="1" name="name">{{Auth::user()->name}}</textarea>   
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <textarea class="form-control" rows="1" name="email">{{Auth::user()->email}}</textarea> 
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="3" name="about"></textarea>   
+                    </div>
+                    <div class="form-group">
+                        <label>Insert Links</label>
+                        <textarea class="form-control" rows="3" name="url"></textarea>    
+                    </div>
+                    <div class="form-group">
+                        <label>Change Profile Picture</label>
+                        <input type="file" name="avatar" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Update Profile</button>
+                    </div>
+                    
+                </div>
+                </form>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
+            
+            </div>
         </div>
     </div>
 </div>	
 @endsection  
+            

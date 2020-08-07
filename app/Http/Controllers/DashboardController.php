@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\POst;
+use App\ApplyEvent;
+use DB;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -26,6 +30,7 @@ class DashboardController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+
         return view('dashboard')->with('posts', $user->posts);
     }
 

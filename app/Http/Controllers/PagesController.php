@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Auth;
 use App\POst;
-use App\faq;
+
 
 class PagesController extends Controller
 {

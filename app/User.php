@@ -38,17 +38,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::created(function($user) 
-        {
-            $user->organiserprofile()->create([
-                'about' => $user->name,
-            ]);
-        });
-    }
+    //     static::created(function ($user){
+    //         $user->organiserprofile()->create([
+    //             'about' => $user->name,
+    //         ]);
+    //     });
+    // }   
 
     public function posts(){
         return $this->hasMany('App\POst');
@@ -59,12 +58,8 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function organiserprofiles(){
-        return $this->hasOne(organiserprofile::class);
-    }
-
-    public function ApplyEvent(){
-        return $this->hasMany(ApplyEvent::class);
+    public function Student(){
+        return $this->hasMany('App\ApplyEvent');
     }
 
 

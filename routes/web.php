@@ -29,14 +29,13 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
-D
+
 Route::get('/profile', 'PagesController@profile');
 
 Route::get('/services', 'PagesController@services');
 
 
 Route::resource('posts', 'PostsController');
-Route::get('/eventhistory', 'PostsController@eventhistory');
 
 Route::group(['middleware' => 'App\Http\Middleware\OrganiserMiddleware'], function(){
 	Route::match(['get', 'post'], '/organiserOnlyPage/', 'DashboardController@organiser');
@@ -54,16 +53,14 @@ Route::post('/profile', 'UserController@store')->name('profile.store');
 Route::patch('/profile', 'UserController@update')->name('profile.update');
 
 
+
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-
-//organiser profile
-Route::get('organiserprofile', 'OrganiserProfileController@index');
-Route::post('organiserprofile', 'OrganiserProfileController@update')->name('organiserprofile.update');
+Route::get('/eventhistory', 'EventHistoryController@index')->name('eventhistory');
 
 //event category
 Route::get('education', 'PagesController@display_education')->name('education');
@@ -77,19 +74,24 @@ Route::get('health', 'PagesController@display_health')->name('health');
 //Route::post('pages/profile', );
 
 
-Route::get('/Studentdashboard', 'DashboardController@index')->name('dashboard');
-
-
 //apply
 Route::get('apply/{id}', 'ApplyEventController@store')->name('apply');
 Route::get('/Studentdashboard', 'ApplyEventController@show')->name('studentdashboard.show');
+Route::get('/Student/manageapply', 'ApplyEventController@update')->name('manageapply.update');
 
 
+//manage apply
+Route::get('manageapply', 'ManageApplyController@index')->name('manageapply');
+Route::get('manageapply/applylist/{id}', 'ManageApplyController@applylist')->name('manageapply.applylist');
+Route::delete('/manageapply/applylist', 'ManageApplyController@destroy')->name('manageapply.destroy');
+
+
+
+//faq
 Route::resource('faq', 'FaqController');
 
-Route::resource('organiserprofile', 'OrganiserProfilesController');
-
-
-Route::resource('manageapply', 'ManageApplyController');
-
-Route::resource('manageapply', 'ManageApplyController');
+//organiser profile
+Route::get('/organiserprofile', 'OrganiserProfilesController@index')->name('organiserprofile.index');
+Route::post('/organiserprofile', 'OrganiserProfilesController@store')->name('organiserprofile.store');
+Route::patch('/organiserprofile', 'OrganiserProfilesController@update')->name('organiserprofile.update');
+Route::get('/organiserprofile/guestview/{id}', 'OrganiserProfilesController@GuestView')->name('organiserprofile.guestview');

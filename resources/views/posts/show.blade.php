@@ -44,95 +44,101 @@ p.ex1 {
         </div>
     </div>
     @guest 
-    <div class="col-lg-8">
+            <div class="col-lg-8">
+                 <a href="/posts" class="btn btn-info">Back</a>
+                    <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Organizer</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1"><a href="{{ route('organiserprofile.guestview', ['id'=>$post->user_id]) }}">{!!$post->Organizer!!}</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Description</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="ex1">{!!$post->Description!!}</p>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Event Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->EventDate!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Event Location</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->EventLocation!!}</p>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Collaborator</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->Collaborator!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Categories</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->Categories!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Recruitment Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->startRec!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Last Recruitment Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->RecruitmentDate!!}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Total Committee Needed</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->TotalCommittee!!}</p>
+                    </div>
+                </div>
+                   
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Contact Person</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{!!$post->Contact!!}</p>
+                    </div>
+                </div>    
+                    
                 <hr>
-            <div class="row">
-                <div class="col-md-4 font-weight-bold">
-                    <label><b> Organizer</b></label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1"><a href="/organiserprofile/{{Auth::user()->id}}">{!!$post->Organizer!!}</a></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Description</label>
-                </div>
-                <div class="col-md-8">
-                    <p class="ex1">{!!$post->Description!!}</p>
-                </div>
-            </div>  
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Event Date</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->EventDate!!}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Event Location</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->EventLocation!!}</p>
-                </div>
-            </div>  
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Collaborator</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->Collaborator!!}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Categories</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->Categories!!}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Recruitment Date</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->startRec!!}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Last Recruitment Date</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->RecruitmentDate!!}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Total Committee Needed</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->TotalCommittee!!}</p>
-                </div>
-            </div>
-               
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Contact Person</label>
-                </div>
-                <div class="col-md-4">
-                    <p class="ex1">{!!$post->Contact!!}</p>
-                </div>
-            </div>    
-                
-            <hr>
-            <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
-            <hr>                    
-            <a href="/register" class="btn btn-info">Apply</a>      
-    @else
+                <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
+                <hr>                    
+            @if(now() > $post->RecruitmentDate)                    
+                <p>Not available</p>
+            @else
+                <a href="/register" type="button" class="btn btn-info">Apply</a>
+              
+                @endif
+        @else
         @if(Auth::user()->type == 'organiser')           
                 <div class="col-lg-8">
                  <a href="/posts" class="btn btn-info">Back</a>
@@ -224,31 +230,34 @@ p.ex1 {
                 <hr>
                     {{-- @if(!Auth::guest()) --}}
                             @if(Auth::user()->id == $post->user_id)
-                                <a href="/posts/{{$post->id}}/edit" class="btn btn-info">Edit</a>
-                                <br><br>
-                                {{Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])}}
+                                <div class="form-group">
+                                    <a href="/posts/{{$post->id}}/edit" class="btn btn-info">Edit</a>
+                                </div>
+                                {{-- <form action="{{'PostsController@destroy', $post->id}}" method="POST" class="form-group">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form> --}}
+                                
+                                <br>
+                                {{Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'form-group'])}}
 
                                 	{{Form::hidden('_method', 'DELETE')}}
                                 	{{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-
-                                    {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-
                                 {{Form::close()}}
                             @endif
                     {{-- @endif --}}
                     
 
         @endif
-        @if(Auth::user()->type == 'student')
+        @if(Auth::user()->type == 'student')  
             <div class="col-lg-8">
+                 <a href="/posts" class="btn btn-info">Back</a>
                     <hr>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Organizer</label>
                     </div>
                     <div class="col-md-4">
-                        <p class="ex1"><a href="/organiserprofile">{!!$post->Organizer!!}</a></p>
+                        <p class="ex1"><a href="{{ route('organiserprofile.guestview', ['id'=>$post->user_id]) }}">{!!$post->Organizer!!}</a></p>
                     </div>
                 </div>
                 <div class="row">
@@ -328,8 +337,9 @@ p.ex1 {
                 <hr>
                 <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
                 <hr>                    
-
-                <a href="" class="btn btn-info">Apply</a>
+            @if(now() > $post->RecruitmentDate)                    
+                <p>Not available</p>
+            @else 
 
                 <a href="" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Apply</a>
                 <!-- Modal -->
@@ -353,11 +363,10 @@ p.ex1 {
                     </div>
                   </div>
                 </div>
-
-                  
-
-            @endif
-    @endguest
+                @endif
+        @endif
+        @endguest
+        
         </div>
     </div>
 

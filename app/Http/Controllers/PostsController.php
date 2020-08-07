@@ -32,7 +32,7 @@ class PostsController extends Controller
         //$posts = DB::select('SELECT * FROM p_osts');
         //$posts POst::orderBy('title', 'asc')->take(1)->get();
         //$posts = POst::orderBy('title', 'asc')->get();
-        $posts = POst::orderBy('created_at', 'asc')->paginate(10);
+        $posts = POst::orderBy('created_at', 'desc')->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -43,7 +43,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        // return view('posts.create');
     }
 
     /**
@@ -104,7 +104,7 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->poster_image = $fileNameToStore;
         $post->save();
-        return redirect('/posts')->with('success','Post Created');
+        return redirect('/dashboard')->with('success','Post Created');
 
     }
 
@@ -117,6 +117,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = POst::find($id);
+        
+
+
         return view('posts.show')-> with('post', $post);
     }
 
@@ -225,7 +228,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
         
-            
+
         if($post->poster_image != 'noimage.jpg'){
             // Delete Image
             Storage::delete('public/poster_images/'.$post->poster_image);
@@ -235,8 +238,5 @@ class PostsController extends Controller
         return redirect('/dashboard')->with('success','Post Removed');
 
     }
-    public function eventhistory(){
-        $posts = POst::orderBy('created_at', 'asc')->paginate(10);
-        return view('posts.eventhistory')->with('posts', $posts);
-    }
+    
 }

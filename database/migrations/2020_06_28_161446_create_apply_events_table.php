@@ -17,7 +17,7 @@ class CreateApplyEventsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('event_id');
-            $table->boolean('accepted')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

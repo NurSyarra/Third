@@ -6,7 +6,7 @@
         font-family: 'Lato', sans-serif;
         margin: 0px;
         padding: 0px;
-        width: 500px;
+        width: 2000px;
     }
     .event-list > li {
         background-color: rgb(255, 255, 255);
@@ -42,6 +42,7 @@
         font-weight: 300;
         line-height: 1;
     }
+    
     .event-list > li > img {
         width: 100%;
     }
@@ -110,8 +111,4 @@
             left: 0px;
             bottom: 0px;
         }
-<<<<<<< HEAD
     }
-=======
-    }
->>>>>>> origin/updated

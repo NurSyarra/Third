@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<link href="{{ asset('css/postevent.css') }}" rel="stylesheet">
+<link href="{{ asset('css/historyevent.css') }}" rel="stylesheet">
 
 @extends('layouts.app')
 
@@ -11,10 +11,12 @@
 
 
 <div class="container">
-    <div class="row my-2">            
+    <div class="row my-2 justify-content-center">            
             <div class="[ col-xs-12 col-sm-offset-2 col-sm-6 ]">
-            <h1>Recruitment Events</h1>
-            <br><br>      
+
+            <h1>Event History</h1>
+            <br><br> 
+            <div class="row justify-content-center">     
                 @if(count($posts) > 0)
                 @foreach($posts as $post)
                 <ul class="event-list">
@@ -37,12 +39,13 @@
                     </li>
                 </ul>
                 @endforeach
-                {{$posts->links()}}
+
                 @else
                     <p>No upcoming events</p>
                 @endif
-            
+            </div>
         </div>
     </div>
 </div>
+
 @endsection

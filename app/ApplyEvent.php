@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Hootlex\Moderation\Moderatable;
 use Illuminate\Database\Eloquent\Model;
 
 class ApplyEvent extends Model
@@ -13,8 +13,15 @@ class ApplyEvent extends Model
         }
 
     public function posts(){
-    	return $this()->belongsToMany(POst::class, 'event_id');
+    	return $this()->belongsToMany(POst::class, 'event_id', 'user_id');
 
     }
+    
+    public function manageapply()
+    {
+        return $this->belongsTo(ManageApply::class);
+    }
+   
+   use Moderatable;
 
 }

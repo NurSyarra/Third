@@ -11,6 +11,7 @@
     <br>
     <center>
     </center>
+    @if(Auth::user()->type == 'student')
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
             
@@ -174,8 +175,30 @@
                 
             </div>
         </div>
+         @endif
+
+         @if(Auth::user()->type == 'organiser')
          
+             <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Student Profile</div>
+                    <div class="card-body">
+                        <p><b>Name: </b>{{ Auth::user()->name }}</p>
+                        <p><b>Email: </b>{{ Auth::user()->email }}</p>
+                        <p><b>Matric No.: </b>{{ $user->profile->matric ?? 'N/A' }}</p>
+                        <p><b>Kulliyyah: </b>{{ $user->profile->kulliyyah ?? 'N/A'}}</p>
+                        <p><b>Level: </b>{{ $user->profile->level ?? 'N/A'}}</p>
+                        <p><b>Phone No.: </b>{{ $user->profile->phone ?? 'N/A'}}</p>
+                        <p><b>Skills: </b>{{ $user->profile->skills ?? 'N/A'}}</p>
+
+                    </div>
+                </div>
+                <br>
+            </div>
+        @endif
+       
         </div>
+        
 
     </div>
 

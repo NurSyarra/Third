@@ -70,6 +70,8 @@ return [
         ],
     ],
 
+    
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -82,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'iiumcommitteemanager@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Committee-Manager'),
     ],
 
     /*
@@ -104,5 +106,13 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ]
 
 ];
