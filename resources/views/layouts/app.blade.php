@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/footer.css') }}">
 
     <!-- mdbootsrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -46,8 +46,9 @@
         <div id="content-wrap">
         <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781; padding: 0px">
             <div class="container">
-                 <a class="navbar-brand" href="{{ url('/dashboard') }}" >
-                    <img src="image/cm_logo2.png" href="" width="250" height="70" style="display: block" alt="">
+                
+                 <a class="navbar-brand" style="padding-bottom: 2px" href="{{ url('/dashboard') }}" >
+                    <img src="{{ asset('image/logo (3).png') }}" href="{{ url('/dashboard') }}" width="200" height="60" style="display: block; " alt="">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse " data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
