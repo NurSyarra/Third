@@ -47,7 +47,7 @@ class FaqController extends Controller
         ], function($mail) use($request){
             $mail->from($request->email, $request->name);
 
-            $mail->to('committeemanager@iium.edu.my')->subject('Frequently Asked Message');
+            $mail->to('iiumcommitteemanager@gmail.com')->subject('Frequently Asked Message');
         });
         return redirect()->back()->with('flash_message', 'Thank you for asking');
     }

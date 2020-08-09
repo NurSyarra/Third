@@ -18,7 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+
+    
+
 
     <!-- mdbootsrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -26,6 +29,7 @@
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+    
 
     {{-- <style type="text/css">
         .main-img {
@@ -46,7 +50,7 @@
         <div id="content-wrap">
         <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781; padding: 0px">
             <div class="container">
-                 <a class="navbar-brand" href="{{ url('/dashboard') }}" >
+                 <a class="navbar-brand" href="{{ url('/') }}" >
                     <img src="image/logom.png" href="" width="250" height="70" style="display: block" alt="">
                 </a>
                 
@@ -105,9 +109,11 @@
                                     <a class="dropdown-item" href="/profile">
                                        <i class="fas fa-user"></i> Profile 
                                     </a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="">
                                         <i class="fa fa-bell" ></i> Notification
+
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -142,7 +148,7 @@
 
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="/eventhistory">
+                                    <a class="dropdown-item" href="/posts">
                                         <i class="far fa-calendar-alt"></i> Event History
                                     </a>
                                     
@@ -167,16 +173,13 @@
                 </div>
             </div>
         </nav>
-                    @include('inc.messages')
-                   
+                @include('inc.messages')
 
                 @yield('content')
 
-    
-
-
     </div>
 
+</div>
      <!-- Footer -->
     <section id="footer">
         <div class="container">
@@ -185,19 +188,15 @@
                     <p class="h6">© All right Reserved. Committee Manager</p>
                 </div>
                 <hr>
-            </div>  
-        </div>
-    </section>
-    <!-- ./Footer -->
-
-</div>
-
-   
-
-    <!-- mdbootstrap -->
+                <!-- mdbootstrap -->
     <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
+            </div>  
+        </div>
+    </section>
+
+
 </body>
 </html>

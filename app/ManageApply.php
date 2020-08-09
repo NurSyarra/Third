@@ -22,7 +22,7 @@ class ManageApply extends Model
     
     public function ApplyEvent()
     {
-        return $this()->belongsToMany(ApplyEvent::class);
+        return $this()->belongsToMany(ApplyEvent::class, 'user_id', 'event_id', 'status');
     }
 
 

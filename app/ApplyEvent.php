@@ -3,6 +3,7 @@
 namespace App;
 use Hootlex\Moderation\Moderatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ApplyEvent extends Model
 {
@@ -23,5 +24,6 @@ class ApplyEvent extends Model
     }
    
    use Moderatable;
+   use SoftDeletes;
 
 }

@@ -1,4 +1,5 @@
 
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 @extends('layouts.app')
@@ -21,13 +22,11 @@
                                 <center><h5 class="card-title">{{ $apply->EventName }}</h5>
 
                                   <img class="card-img" src="/storage/poster_images/{{$apply->poster_image}}" alt="poster_image" style="height:250px; width: 260px">
-                                  
-                                  <p>Number of applicant(s): {{ $apply->cnt }}</p>
                               
-                               
+                               <p>Total applicant(s): {{$apply->cnt}}</p>
                                 </center><hr>
                                 
-                                <a href="{{ route('manageapply.applylist', ['id'=>$apply->event_id])}}" class="btn btn-info">View applicants</a>
+                                <a href="{{ route('manageapply.acceptlist', ['id'=>$apply->event_id])}}" class="btn btn-info">View applicants</a>
 
                               </div>
                             </div>

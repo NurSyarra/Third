@@ -29,12 +29,9 @@ class LoginController extends Controller
    // protected $redirectTo = RouteServiceProvider::DASHBOARD;
 
     protected function authenticated ($request, $user){
-        if($user->type=='student'){
-            return redirect ('/');
-        } 
-        else{
+        
             return redirect('/dashboard');
-        }
+        
 
        // return $user;
     }
@@ -47,5 +44,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+       
     }
+
+    
 }

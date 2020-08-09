@@ -1,9 +1,12 @@
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <div class="row my-2 justify-content-center">
+
+    <div class="row my-5 justify-content-center">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header"><center>USER PROFILE</center></div>
@@ -42,16 +45,7 @@
                     <div class="form-group">
                         <label>Insert Links</label>
                         <textarea class="form-control" rows="3" name="url">{{ old('url') ?? $org->organiserprofile->url  }}</textarea>    
-                    </div>
-                    <div class="form-group">
-                        <label>Change Profile Picture</label>
-                        <input type="file" name="avatar" class="form-control"> 
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">Update Profile</button>
-                    </div>
-                </div>
-                </form>
+
                     @if(Session::has('message'))
                         <div class="alert alert-success">
                             {{Session::get('message')}}
@@ -60,6 +54,6 @@
                 </div>
             </div>
     </div>
-</div>  
+</div>
+</div>
 @endsection  
-            

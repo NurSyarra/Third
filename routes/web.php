@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Notifications\SuccessfullyApplyforEvent;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes(['verify' => true]);
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 /*Route::get('/hello', function () {
     //return view('welcome');
@@ -56,11 +62,10 @@ Route::patch('/profile', 'UserController@update')->name('profile.update');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/eventhistory', 'EventHistoryController@index')->name('eventhistory');
+// Route::resource('/eventhistory', 'EventHistoryController');
 
 //event category
 Route::get('education', 'PagesController@display_education')->name('education');
@@ -76,6 +81,7 @@ Route::get('health', 'PagesController@display_health')->name('health');
 
 //apply
 Route::get('apply/{id}', 'ApplyEventController@store')->name('apply');
+
 Route::get('/Studentdashboard', 'ApplyEventController@show')->name('studentdashboard.show');
 Route::get('/Student/manageapply', 'ApplyEventController@update')->name('manageapply.update');
 
@@ -83,7 +89,18 @@ Route::get('/Student/manageapply', 'ApplyEventController@update')->name('managea
 //manage apply
 Route::get('manageapply', 'ManageApplyController@index')->name('manageapply');
 Route::get('manageapply/applylist/{id}', 'ManageApplyController@applylist')->name('manageapply.applylist');
-Route::delete('/manageapply/applylist', 'ManageApplyController@destroy')->name('manageapply.destroy');
+Route::get('manageapply/acceptlist/{id}', 'ManageApplyController@acceptlist')->name('manageapply.acceptlist');
+Route::delete('manageapply/acceptlist/{id}','ManageApplyController@reject');
+Route::post('manageapply/acceptlist/{id}','ManageApplyController@accept');
+
+
+Route::get('/Studentdashboard', 'ApplyEventController@index')->name('studentdashboard.index');
+Route::get('Studentdashboard/{id}', 'ApplyEventController@show')->name('details.show');
+Route::delete('Studentdashboard', 'ApplyEventController@destroy')->name('application.destroy');
+
+//Route::get('/Studentdashboard', 'ApplyEventController@Email')->name('studentdashboard.email');
+
+
 
 
 
@@ -95,3 +112,21 @@ Route::get('/organiserprofile', 'OrganiserProfilesController@index')->name('orga
 Route::post('/organiserprofile', 'OrganiserProfilesController@store')->name('organiserprofile.store');
 Route::patch('/organiserprofile', 'OrganiserProfilesController@update')->name('organiserprofile.update');
 Route::get('/organiserprofile/guestview/{id}', 'OrganiserProfilesController@GuestView')->name('organiserprofile.guestview');
+
+
+Route::resource('Notifications', 'NotificationController');
+
+
+
+Route::get('/{id}', 'EmailNotificationController@show')->name('remind.show')->middleware('auth');
+
+Route::get('/posts/{id}', 'PostsController@show')->name('posts.show');
+
+Route::group([ 'middleware' => 'auth' ], function () {
+    // ...
+    Route::get('/notifications', 'NotificationController@notifications');
+});
+
+
+
+

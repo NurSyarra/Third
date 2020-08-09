@@ -3,7 +3,7 @@
 <style type="text/css">
 
 </style>
-@extends('layouts.app')
+@extends('layouts.app_carousel')
 
 @section('content')
 
@@ -98,16 +98,16 @@
     <h5>Upcoming Events</h5>
     <div class="list-group">
       @if(count($post) > 0)
-      @foreach($post as $i)
+      @foreach($post as $posts)
 
-        <a href="#" class="list-group-item list-group-item-action ">
+        <div href="#" class="list-group-item list-group-item-action ">
           <div class="d-flex w-100 justify-content-between">
-                <h5>{{ $i->EventName }}</h5>
-                <button type="button" class="btn btn-info reminder">Notify me</button>
-            </div>
-            <p class="upcomingEvent"> Description: {{ $i->Description }} </p>
-            <p class="upcomingEvent"> Event Date: {{ $i->EventDate = date('d-m-Y')}} </p> 
-        </a>
+            <h5>{{ $posts->EventName }}</h5>
+            <a href="{{ route('remind.show', ['id'=>$posts->id]) }}" class="btn btn-info">Remind Me</a>
+          </div>
+            <p class="upcomingEvent"> Description: {{ $posts->Description }} </p>
+            <p class="upcomingEvent"> Event Date: {{ $posts->EventDate}} </p> 
+        </div>
         @endforeach
         @else
           <p>No upcoming event</p>

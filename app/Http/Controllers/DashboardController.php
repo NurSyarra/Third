@@ -8,6 +8,8 @@ use App\POst;
 use App\ApplyEvent;
 use DB;
 use Auth;
+use App\faq;
+
 
 class DashboardController extends Controller
 {
@@ -31,7 +33,9 @@ class DashboardController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
+
         return view('dashboard')->with('posts', $user->posts);
+
     }
 
     public function organiser(Request $req){

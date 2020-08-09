@@ -1,41 +1,42 @@
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
+ 
+<link rel="stylesheet" type="text/css" href="css/app.css">
 
 @extends('layouts.app')
-
 
 @section('content')
 <div id="app">        
     <main class="py-4">
         <div class="container"><br>
+          
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-30">
                     <div class="card">
                         <div class="card-header">Commitee Application</div>
                             <div class="card-body">
-                              
-                                @if(count($apply) > 0)
-                                  
+                                
+
                                 <table class="table table-striped table-bordered table-hover dataTable js-exportable">
                                     <tr>
                                       <th>No.</th>
-                                      <th>Event Name</th>
                                       <th>Student ID</th>
                                       <th>Student Name</th>
                                       <th>Student Email</th>
+                                      <th>Applied at</th>
                                       <th>Action</th>
+                                      <th>Status</th>
                                     </tr>
-                                  @foreach($apply as $key => $apply)
                                   
+                                  @foreach($apply as $key => $apply)
                                   <tr>
                                       <td>{{$key + 1}}</td>
-                                      <td>{{$apply->EventName}}</td>
                                       <td>{{$apply->matric}}</td>
                                       <td>{{$apply->name}}</td>
                                       <td>{{$apply->email}}</td>
+                                      <td>{{$apply->created_at}}</td>
                                       <td>
+                                        <span style="display: inline;">
                                           
-                                          <a href="{{-- {{ route('manageapply.update', ['id'=>$apply->user_id]) }} --}}" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">View Profile</a>
+                                          <a href="" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-eye"></i></a>
                                           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                               <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -54,34 +55,36 @@
                                                     <p><b>Skills: </b>{{ $apply->skills}}</p>       
                                                   </div>
                                                         </div>
-                                                      </div>
+                                          </div>
                                             
-                                          <a href="" class="btn btn-info">Accept</a>
-                                          <a href="" class="btn btn-danger">Reject</a>
+                                              {!!Form::open(['action' => ['ManageApplyController@accept', $apply->id], 'method' => 'POST', 'class' => 'pull-right inline'])!!}
+                                                {!!Form::submit('ACCEPT', ['class' => 'btn btn-info'])!!}
+                                              {!!Form::close()!!}
+                                          
+                                              {{Form::open(['action' => ['ManageApplyController@reject', $apply->id], 'method' => 'POST', 'class' => 'pull-right inline'])}}
+                                                {{Form::hidden('_method', 'DELETE')}}
+                                                {{Form::submit('REJECT', ['class' => 'btn btn-danger'])}}
+                                              {{Form::close()}}
+                                          </span>
+                                      
                                       </td>
+                                      <td>@if( $apply->status == 2)
+                                          Accepted
+                                          @elseif($apply->status == 1)
+                                          Rejected
+                                          @else
+                                          Pending
+                                          @endif</td>
                                   </tr>
-                                  
                                   @endforeach 
-                              </table> 
-                              @else
-                              <table class="table table-striped">
-                                  <tr>
-                                      <th>Event Name</th>
-                                      <th>Student ID</th>
-                                      <th>Student Name</th>
-                                      <th>Student Email</th>
-                                      <th>Action</th>
-                                  </tr>
-                                  <tr>
-                                    <td>NO APPLICANTS</td>
-                                  </tr>
+                                 
                               </table>
-                              @endif
-                            
+                              <a href="/manageapply" class=" btn btn-info pull-right">BACK</a>
                             </div>
                     </div>
                 </div>                
             </div>
+           
 		    </div>
     </main>
 </div>

@@ -29,7 +29,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::DASHBOARD;
+    //protected $redirectTo = RouteServiceProvider::DASHBOARD;
+
+    protected function authenticated ($request, $user){
+        return redirect ('/login');
+    }
 
     /**
      * Create a new controller instance.

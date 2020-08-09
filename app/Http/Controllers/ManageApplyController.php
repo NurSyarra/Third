@@ -32,80 +32,66 @@ class ManageApplyController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function applylist(Request $request)
     {
         $apply = DB::table('apply_events')
                 ->join('users', 'apply_events.user_id', '=', 'users.id')
                 ->join('profile', 'apply_events.user_id', '=', 'profile.user_id')
                 ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                ->where('apply_events.status', '=', 2) 
+                ->select('p_osts.EventName', 'apply_events.id', 'apply_events.user_id', 'apply_events.event_id', 'users.name', 'users.email', 'apply_events.status', 'profile.matric', 'profile.kulliyyah', 'profile.level', 'profile.phone', 'profile.skills', 'apply_events.created_at', DB::raw('count(*) as cnt'))
+                ->get();
+
+        return view('manageapply.applylist', compact('apply'));
+    }
+    
+    public function acceptlist(Request $request)
+    {
+        $apply = DB::table('apply_events')
+                ->join('users', 'apply_events.user_id', '=', 'users.id')
+                ->join('profile', 'apply_events.user_id', '=', 'profile.user_id')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
                 ->where('apply_events.event_id', '=', $request->id) 
-                ->select('p_osts.EventName', 'apply_events.id', 'apply_events.user_id', 'apply_events.event_id', 'users.name', 'users.email', 'profile.matric', 'profile.kulliyyah', 'profile.level', 'profile.phone', 'profile.skills', 'apply_events.created_at')
+                ->select('p_osts.EventName', 'apply_events.id', 'apply_events.user_id', 'apply_events.event_id', 'users.name', 'users.email', 'apply_events.status', 'profile.matric', 'profile.kulliyyah', 'profile.level', 'profile.phone', 'profile.skills', 'apply_events.created_at')
                 ->orderBy('apply_events.id')    
                 ->get();
 
-       return view('manageapply.applylist', compact('apply'));
+       return view('manageapply.acceptlist', compact('apply'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function accept($id)
     {
-        //
+        $apply = DB::table('apply_events')
+                ->join('users', 'apply_events.user_id', '=', 'users.id')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                ->where('apply_events.user_id', '=', 'users.id')
+                ->orWhere('apply_events.event_id', '=', 'p_osts.id')
+                ->orWhere('apply_events.status', 0)
+                ->update(['apply_events.status' => 2]);
+
+        // if($apply->status == 2){
+
+        // }
+
+        return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function reject(Request $request, $id)
     {
+        $apply = DB::table('apply_events')
+                ->join('users', 'apply_events.user_id', '=', 'users.id')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                ->where('apply_events.user_id', '=', 'users.id')
+                ->orWhere('apply_events.event_id', '=', 'p_osts.id')
+                ->orWhere('apply_events.status', 0)
+                ->update(['apply_events.status' => 1]);
+
+        $apply = new ApplyEvent;
+
+        if($apply->status == 1){
+            softDeletes();
+        }
         
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $apply = ApplyEvent::find($request->id);
-
-        $apply->delete();
-        
-        return redirect('manageapply.applylist')->with('success','Application rejected');
+        return redirect()->back();
     }
 }

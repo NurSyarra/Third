@@ -1,5 +1,4 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -10,7 +9,6 @@ p.ex1 {
 }
 
 </style>
-
 @extends('layouts.app')
 
 @section('content')
@@ -127,7 +125,7 @@ p.ex1 {
                     <div class="col-md-4">
                         <p class="ex1">{!!$post->Contact!!}</p>
                     </div>
-                </div>    
+                </div> 
                     
                 <hr>
                 <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
@@ -248,6 +246,7 @@ p.ex1 {
                     
 
         @endif
+
         @if(Auth::user()->type == 'student')  
             <div class="col-lg-8">
                  <a href="/posts" class="btn btn-info">Back</a>
@@ -354,11 +353,11 @@ p.ex1 {
                       </div>
                       <div class="modal-body">
                         Confirm to apply for this event?
-                        <p>You cannot cancel this action once you click confirm</p>
+                        <p></p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Save changes</a>
+                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Confirm</a>
                       </div>
                     </div>
                   </div>

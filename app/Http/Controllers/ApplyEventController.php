@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Auth;
 use App\POst;
 use App\Profile;
-use App\User;
 use App\ApplyEvent;
 use Carbon\Carbon;
 use DB;
@@ -13,8 +12,16 @@ use Illuminate\Http\Request;
 
 class ApplyEventController extends Controller
 {
-    public function index(){    
-   	}
+    public function index(){
+        $apply = DB::table('apply_events')
+                ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
+                ->join('users', 'apply_events.user_id', '=', 'users.id')
+                ->select('p_osts.Organizer', 'p_osts.EventName', 'p_osts.poster_image', 'apply_events.status', 'apply_events.id')
+                ->where('apply_events.user_id', '=', auth()->user()->id)
+                ->get();
+
+        return view('Student.StudentDashboard', compact('apply'));    
+    }
 
     public function store(Request $request){
 
@@ -48,36 +55,28 @@ class ApplyEventController extends Controller
     }
 
     public function show(Request $request){
-       $apply = DB::table('apply_events')
+        $apply = DB::table('apply_events')
                 ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
-                ->join('users', 'apply_events.user_id', '=', 'users.id')
-                ->select('p_osts.Organizer', 'p_osts.EventName', 'p_osts.poster_image', 'apply_events.status', 'apply_events.id')
-                ->where('apply_events.user_id', '=', auth()->user()->id)
+                ->select('p_osts.*','apply_events.*')
+                ->where('apply_events.id', '=', $request->id)
                 ->get();
-       return view('Student.Studentdashboard', compact('apply'));
+
+       return view('Student.studenteventdetails', compact('apply'));
                 
     }
 
-   
-
-    // public function update(Request $request){
-    //     $apply = DB::table('apply_events')
-    //             ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
-    //             ->join('profile', 'apply_events.user_id', '=', 'profile.id')
-    //             ->join('users', 'apply_events.user_id', '=', 'users.id')
-    //             ->select('p_osts.EventName','apply_events.id', 'profile.matric', 'users.name', 'users.email', 'apply_events.user_id', 'apply_events.event_id', 'p_osts.id')
-    //             ->where('apply_events.id', '=', $request->id)
-    //             ->where('apply_events.user_id', '=' , 'profile.user_id')
-    //             ->where('apply_events.event_id', '=', 'p_osts.id')
-    //             ->get();
-
-    //    return view('Student.manageapply', ['apply' => $apply]);
-    // }
-
-    public function destroy(Request $request){
-
+    public function update(){
+        //
     }
 
+    public function destroy(Request $request){
+        $apply = ApplyEvent::find($request->id);
+        $apply->delete();
+        //ApplyEvent::destroy($request->id);
 
+        session()->flash('Successmessage', 'You have successfully cancel your application');
+
+        return redirect()->action('ApplyEventController@index');
+    }
 
 }

@@ -29,7 +29,6 @@ class PagesController extends Controller
         );
         return view('pages.services')->with($data);
     }
-
    
    public function profile(){
         $title = 'Profile';
@@ -37,39 +36,42 @@ class PagesController extends Controller
     }
 
     public function display_education(){
-        $post = POst::all();
-        return view('pages.category_page')-> with('post', $post);
+        $title = 'Education';
+        $posts = POst::where('Categories', 'Education' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     public function display_fest(){
-        $title = 'fest';
-        $post = POst::where('Categories', 'fest' )->get();
-        return view('pages.category_page')-> with('post', $post);
+        $title = 'Festival';
+        $posts = POst::where('Categories', 'Festival' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     public function display_health(){
-        $title = 'fest';
-        $post = POst::where('Categories', 'health' )->get();
-        return view('pages.category_page')-> with('post', $post);
+        $title = 'health';
+        $posts = POst::where('Categories', 'Health' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     public function display_culture(){
-        $title = 'fest';
-        $post = POst::where('Categories', 'culture' )->get();
-        return view('pages.category_page')-> with('post', $post);
+        $title = 'culture';
+        $posts = POst::where('Categories', 'Culture and Arts' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     public function display_animals(){
-        $title = 'fest';
-        $post = POst::where('Categories', 'animals' )->get();
-        return view('pages.category_page')-> with('post', $post);
+        $title = 'animals';
+        $posts = POst::where('Categories', 'Animals and Nature' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     public function display_community(){
-        $title = 'fest';
-        $post = POst::where('Categories', 'community' )->get();
-        return view('pages.category_page')-> with('post', $post);
-    }    
+        $title = 'community';
+        $posts = POst::where('Categories', 'Community Service' )->paginate(10);
+        return view('posts.index')->with('posts', $posts);
+    }
+
+
 
        
 }

@@ -42,7 +42,7 @@
         font-weight: 300;
         line-height: 1;
     }
-    
+
     .event-list > li > img {
         width: 100%;
     }
@@ -111,4 +111,4 @@
             left: 0px;
             bottom: 0px;
         }
-    }
+

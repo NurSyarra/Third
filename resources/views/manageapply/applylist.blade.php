@@ -13,29 +13,31 @@
                     <div class="card">
                         <div class="card-header">Commitee Application</div>
                             <div class="card-body">
-                                
 
-                                <table class="table table-striped table-bordered table-hover dataTable js-exportable">
+
+                              
+                                <br>
+                              <br>
+                              <table class="table table-striped table-bordered table-hover dataTable js-exportable">
                                     <tr>
                                       <th>No.</th>
                                       <th>Student ID</th>
                                       <th>Student Name</th>
                                       <th>Student Email</th>
-                                      <th>Applied at</th>
-                                      <th>Action</th>
+                                      <th>View</th>
                                     </tr>
                                   
-                                  @foreach($apply as $key => $apply)
+                               
+                               @foreach($apply as $key => $apply)
                                   <tr>
                                       <td>{{$key + 1}}</td>
                                       <td>{{$apply->matric}}</td>
                                       <td>{{$apply->name}}</td>
                                       <td>{{$apply->email}}</td>
-                                      <td>{{$apply->created_at}}</td>
                                       <td>
                                         <span style="display: inline;">
                                           
-                                          <a href="{{-- {{ route('manageapply.update', ['id'=>$apply->user_id]) }} --}}" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-eye"></i></a>
+                                          <a href="" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-eye"></i></a>
                                           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                               <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -55,22 +57,14 @@
                                                   </div>
                                                         </div>
                                           </div>
-                                            
-                                              <a href="" class="btn btn-info">ACCEPT</a>
-                                          
-                                              {{Form::open(['action' => ['ManageApplyController@destroy', $apply->id], 'method' => 'POST', 'class' => 'pull-right inline'])}}
-                                                {{Form::hidden('_method', 'DELETE')}}
-                                                {{Form::submit('REJECT', ['class' => 'btn btn-danger'])}}
-                                              {{Form::close()}}
-                                          </span>
-                                      
+                                        </span>
                                       </td>
-                                  </tr>
-                                  @endforeach 
-                                 
+                                    </tr>
+                                    @endforeach
                               </table>
-                              <a href="/manageapply" class=" btn btn-info pull-right">BACK</a>
+
                             </div>
+
                     </div>
                 </div>                
             </div>

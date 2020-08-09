@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
+
     <div class="row my-5 justify-content-center">
         <div class="col-md-4">
             <div class="card">
@@ -64,4 +64,6 @@
     </div>
 </div>	
 @endsection  
-            
+
+  
+

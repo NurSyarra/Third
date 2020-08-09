@@ -5,33 +5,33 @@ section {
 }
 
 
-#footer {
+.footer {
     background: #348781 !important;
     height: 80px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
 
-#footer a {
+.footer a {
     color: #ffffff;
     text-decoration: none !important;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
-#app {
+.app {
   position: relative;
   min-height: 140vh;
 }
 
-#content-wrap {
+.content-wrap {
   padding-bottom: 5.0rem;    /* Footer height */
 }
 
 @media (max-width:767px){
-    #footer h5 {
+    .footer h5 {
     padding-left: 0;
     border-left: transparent;
     padding-bottom: 0px;
-    margin-bottom: 10px;
-}
+    margin-bottom: 10px; }}
+

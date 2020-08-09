@@ -13,6 +13,9 @@ class OrganiserProfiles extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+    
+    
     protected $fillable = [
     	'about', 'avatar', 'url', 'user_id',
 
