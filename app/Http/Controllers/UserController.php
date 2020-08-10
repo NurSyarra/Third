@@ -61,7 +61,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $profile = new Profile;
 
+        $profile->user_id = auth()->user()->id;
+        $profile->matric = $request->input('matric');
+        $profile->kulliyyah = $request->input('kulliyyah');
+        $profile->level = $request->input('level');
+        $profile->phone = $request->input('phone');
+        $profile->skills = $request->input('skills');
+        
         
         if(request()->hasFile('image')){
             //Getfilename with the extension
@@ -73,32 +81,15 @@ class UserController extends Controller
             // Filename to store
             $fileNameToStore  = $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = request()->file('image')->storeAs('public/profile_image', $fileNameToStore);
+            $path = request()->file('image')->storeAs('public/images', $fileNameToStore);
         } else {
             $fileNameToStore = 'noimage.png';
         }
 
         
-        $profile = new Profile;
-
-        $profile->user_id = auth()->user()->id;
-        $profile->matric = $request->input('matric');
-        $profile->kulliyyah = $request->input('kulliyyah');
-        $profile->level = $request->input('level');
-        $profile->phone = $request->input('phone');
-        $profile->skills = $request->input('skills');
         $profile->image = $fileNameToStore;
         $profile->save();
-
-        /*if(request('image')) {
-            $imagePath = request('image')->store('profile_image', 'public');
-
-            $image = Image::make(public_path("storage/{$imagePath}"));
-            $image->save();
-        }*/
         
-
-
 
         return redirect()->route('profile.index')->with('successMsg', 'Successfully update profile'); 
 
@@ -157,18 +148,12 @@ class UserController extends Controller
             // Filename to store
             $fileNameToStore  = $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = request()->file('image')->storeAs('public/profile_image', $fileNameToStore);
+            $path = request()->file('image')->storeAs('public/images', $fileNameToStore);
         }
         else {
             $fileNameToStore = 'noimage.png';
         }
 
-        /*if(request('image')) {
-            $imagePath = request('image')->store('profile_image', 'public');
-
-            $image = Image::make(public_path("storage/{$imagePath}"));
-            $image->save();
-        }*/
    
         auth()->user()->profile->update(array_merge(
             $data,

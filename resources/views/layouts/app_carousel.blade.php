@@ -18,7 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
     <!-- mdbootsrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">

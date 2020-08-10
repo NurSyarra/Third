@@ -1,3 +1,15 @@
+
+<style type="text/css">
+    #about_title{
+         font-family: Cambria; 
+         font-size: 20px; 
+         font-style: normal; 
+         font-variant: normal; 
+         font-weight: 300; 
+         line-height: 27.9px; 
+    }
+</style>
+
 @php
     $values = explode(", ", $post->Categories);
 @endphp
@@ -7,8 +19,10 @@
 
 <div class="container">
     <div class="row my-2">
-        <div class="col-lg-8 order-lg-2">          
-        <h1>EDIT RECRUITMENT APPLICATION</h1>
+        <div class="col-lg-8 order-lg-2"> 
+        <div class="card">
+            <div class="card-header" id="about_title">EDIT COMMITTEE APPLICATION</div>
+                <div class="card-body">         
         {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' =>'POST', 'enctype'=>'multipart/form-data']) !!}
 
             <div class="form-group">
@@ -100,7 +114,7 @@
 
     		{{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
 		{!! Form::close() !!}
-
+</div></div>
 
         </div>
     </div>

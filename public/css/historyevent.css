@@ -6,7 +6,7 @@
         font-family: 'Lato', sans-serif;
         margin: 0px;
         padding: 0px;
-        width: 2000px;
+        width: 700px;
     }
     .event-list > li {
         background-color: rgb(255, 255, 255);
@@ -66,7 +66,17 @@
         width: 100%;
         color: rgb(30, 30, 30);
         text-decoration: none;
-    } 
+    }
+
+    #about_title{
+         font-family: Cambria; 
+         font-size: 40px; 
+         font-style: normal; 
+         font-variant: normal; 
+         font-weight: 300; 
+         line-height: 27.9px; 
+         padding: 40px;
+    }
 
     @media (min-width: 768px) {
         .event-list > li {
@@ -111,4 +121,6 @@
             left: 0px;
             bottom: 0px;
         }
+
+        
     }

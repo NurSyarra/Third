@@ -64,6 +64,7 @@ Route::patch('/profile', 'UserController@update')->name('profile.update');
 
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/eventhistory', 'EventHistoryController@index')->name('eventhistory');
 
 // Route::resource('/eventhistory', 'EventHistoryController');
 

@@ -1,4 +1,14 @@
 @extends('layouts.app')
+<style type="text/css">
+    #about_title{
+         font-family: Cambria; 
+         font-size: 20px; 
+         font-style: normal; 
+         font-variant: normal; 
+         font-weight: 300; 
+         line-height: 27.9px; 
+    }
+</style>
 
 <script type="text/javascript">
          // Get the modal
@@ -45,30 +55,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-20">
                         <div class="card">
-                            <div class="card-header">Dashboard</div>
+                            <div class="card-header" id="about_title">YOUR DASHBOARD</div>
                                 <div class="card-body">
-                                
-            
-                                <h3>Your Dashboard</h3>
                                 <a type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Create Committee Application</a>
-                            @if(count($posts)>0)
                             <a href="/manageapply" type="button" class="btn btn-info" >Manage Application</a>
-                            @else
-                            <a  type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter1">Manage Application</a>
-                            <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Committee Applicant</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                             <p>You have no applicant.</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            @endif
+
                                 
                                 <hr>
                                         <!-- Modal -->

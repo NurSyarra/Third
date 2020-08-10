@@ -51,7 +51,7 @@
         <nav class="navbar navbar-expand-md navbar navbar-dark" style="background-color: #348781; padding: 0px">
             <div class="container">
                  <a class="navbar-brand" href="{{ url('/') }}" >
-                    <img src="image/logom.png" href="" width="250" height="70" style="display: block" alt="">
+                    <img src="{{asset('image/logom.png')}}" href="" width="250" height="70" style="display: block" alt="">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse " data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -148,7 +148,7 @@
 
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="/posts">
+                                    <a class="dropdown-item" href="/eventhistory">
                                         <i class="far fa-calendar-alt"></i> Event History
                                     </a>
                                     

@@ -24,6 +24,7 @@
                                   <img class="card-img" src="/storage/poster_images/{{$apply->poster_image}}" alt="poster_image" style="height:250px; width: 260px">
                               
                                <p>Total applicant(s): {{$apply->cnt}}</p>
+                      
                                 </center><hr>
                                 
                                 <a href="{{ route('manageapply.acceptlist', ['id'=>$apply->event_id])}}" class="btn btn-info">View applicants</a>
@@ -33,6 +34,8 @@
                           </div>
                            @endforeach
                         </div>
+                      @else
+                        <h3>You have no applicant.</h3>
                       @endif
                          
                 </div>                
