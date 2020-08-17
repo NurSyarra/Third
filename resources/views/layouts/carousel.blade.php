@@ -24,7 +24,7 @@
                 <div style="font-family:brush script mt; font-size: 60px">Committee Manager</div></h4>
               <p>No hassle, easy and no time-consuming.</p>
               <a href="#">REGISTER AS ORGANISER NOW</a> </div>
-            <div class="col-md-5 col-12 order-md-2 order-1"><img src="image/people.png" class="mx-auto" alt="slide"></div>
+            <div class="col-md-5 col-12 order-md-2 order-1"><img src="image/selfie.png" class="mx-auto" alt="slide"></div>
           </div>
         </div>
       </div>
