@@ -3,6 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+
 <style type="text/css">
     #about_title{
          font-family: Cambria; 
@@ -21,7 +22,7 @@
         font-family: 'Lato', sans-serif;
         margin: 0px;
         padding: 0px;
-        width: 600px;
+        width: 550px;
     }
     .event-list > li {
         background-color: rgb(255, 255, 255);
@@ -136,7 +137,6 @@
             left: 0px;
             bottom: 0px;
         }
-
         
     }
 </style>
@@ -149,7 +149,6 @@
 <div class="container">
     <br><br>
      <center><h1 id="about_title">Event History</h1></center>
-     <br><br>
     <div class="row my-2">
       
         <div class="[ col-xs-12 col-sm-offset-2 col-sm-6 ]">
@@ -215,10 +214,10 @@
                 @else
                     <p>No upcoming events</p>
                 @endif
-            </div></div>
-          
+            </div>
         </div>
+            
+        </div> 
     </div>
-</div>
 
 @endsection

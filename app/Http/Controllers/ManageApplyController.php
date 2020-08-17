@@ -53,14 +53,11 @@ class ManageApplyController extends Controller
         $apply = DB::table('apply_events')
                 ->join('users', 'apply_events.user_id', '=', 'users.id')
                 ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
-                ->where('apply_events.user_id', '=', 'users.id')
-                ->orWhere('apply_events.event_id', '=', 'p_osts.id')
+                ->where('apply_events.user_id', '=', 'profile.user_id')
+                ->orWhere('apply_events.event_id', '=', 'p_osts.id') 
                 ->orWhere('apply_events.status', 0)
                 ->update(['apply_events.status' => 2]);
 
-        // if($apply->status == 2){
-
-        // }
 
         return redirect()->back();
     }
@@ -70,16 +67,12 @@ class ManageApplyController extends Controller
         $apply = DB::table('apply_events')
                 ->join('users', 'apply_events.user_id', '=', 'users.id')
                 ->join('p_osts','apply_events.event_id', '=', 'p_osts.id')
-                ->where('apply_events.user_id', '=', 'users.id')
+                ->where('apply_events.user_id', '=', 'profile.user_id')
                 ->orWhere('apply_events.event_id', '=', 'p_osts.id')
                 ->orWhere('apply_events.status', 0)
                 ->update(['apply_events.status' => 1]);
 
         $apply = new ApplyEvent;
-
-        if($apply->status == 1){
-            softDeletes();
-        }
         
         return redirect()->back();
     }

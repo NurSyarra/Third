@@ -19,8 +19,8 @@
           
             <div class="row justify-content-center">
                 <div class="col-md-30">
-                    <div class="card">
-                        <div class="card-header" id="about_title">Commitee Application</div>
+                    <div class="card">@foreach($apply as $key => $apply)
+                        <div class="card-header" id="about_title">Accepted Committee(s) - {{$apply->EventName}}</div>
                             <div class="card-body">
             
                               
@@ -32,7 +32,7 @@
                                       <th>Student Email</th>
                                       <th>View</th>
                                     </tr>
-                               @foreach($apply as $key => $apply)
+                               
                              
                               
                                   
@@ -69,12 +69,12 @@
                                       </td>
                                     </tr>
                                    
-                                    @endforeach
+                                    
                                   
                               </table>
                     
                             </div>
-
+@endforeach
                     </div>
                 </div>                
             </div>

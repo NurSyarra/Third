@@ -78,7 +78,10 @@
                                           </span>
                                       
                                       </td>
-                                      <td>@if( $apply->status == 2)
+
+                                      <td>
+                                        
+                                          @if( $apply->status == 2)
                                           Accepted
                                           @elseif($apply->status == 1)
                                           Rejected

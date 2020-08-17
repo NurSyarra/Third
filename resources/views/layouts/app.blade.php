@@ -18,10 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-
-    
-
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
     <!-- mdbootsrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -29,18 +26,8 @@
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
-    
 
-    {{-- <style type="text/css">
-        .main-img {
-            background: url('/image/background1.png');
-            background-position: center center;
-            background-attachment: fixed;
-            background-size: cover;
-            height: 100vh;
-            width: 100%;
-        }
-    </style> --}}
+
 
 </head>
 <body>
@@ -179,24 +166,18 @@
 
     </div>
 
-</div>
-     <!-- Footer -->
-    <section id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                    <p class="h6">© All right Reserved. Committee Manager</p>
-                </div>
-                <hr>
-                <!-- mdbootstrap -->
+    {{-- <div class="footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p class="h6">© All right Reserved. Committee Manager</p>
+            </div>
+            <hr>
+        </div>  
+    </div>
+     <!-- mdbootstrap -->
     <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
-            </div>  
-        </div>
-    </section>
-
-
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script> --}}
 </body>
 </html>
