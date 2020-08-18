@@ -321,9 +321,10 @@ p.ex1 {
                 <small>Posted on {{$post->created_at}} by {{$post->user->name}}</small>
                 <hr>                    
                 <a href="" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Apply</a>
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Apply for this Event</h5>
@@ -332,13 +333,29 @@ p.ex1 {
                         </button>
                       </div>
                       <div class="modal-body">
-                        Confirm to apply for this event?
-                        <p></p>
+
+                        <form method="post" action="{{ route('apply', ['id'=>$post->id]) }}">
+                        @csrf
+                            <label for="position" class="">{{ __('Specific position/bureau that you want to join:') }}</label> 
+                            <input type="textarea" id="Applied_position" class="form-control @error('Applied_position') is-invalid @enderror" name="Applied_position" placeholder="Any position or bureau that you want to join">
+
+                            <br>
+
+                            <small>*subject is upon availability</small><br>
+                            <small>**if you leave it as blank, you will be assigned to any available position or bureau</small>
+
+                            <br><br>
+                            <div class="" style="padding-left: 80%">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="Confirm" class="btn btn-info">
+                                    {{ __('Confirm') }}
+                                </button>
+                            </div>
+
+                        </form>
+
                       </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ route('apply', ['id'=>$post->id]) }}" type="button" class="btn btn-info">Confirm</a>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
