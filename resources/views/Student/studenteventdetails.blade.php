@@ -111,38 +111,52 @@
                     </div>
                     <div class="col-md-4">
                         <p class="ex1">
-                            @if( $apply->accepted == 1)
-                                Approved
-                            @else
+                            @if($apply->status == 0)
                                 Pending
+                            @endif
+                            @if($apply->status == 1)
+                                Rejected                                
+                            @endif
+                            @if($apply->status == 2)
+                                Accepted
                             @endif
                         </p>
                     </div>
-                </div>    
-                    
+                </div>  
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Applied position/bureau</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="ex1">{{ $apply->Applied_position ?? 'Not Specified' }}</p>
+                    </div>
+                </div>                        
                 <hr>
                 <small>Posted on {{$apply->created_at}} by {{$apply->Organizer}}</small>
                 <hr>                    
-                <a href="" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Cancel Application</a>
+                <a href="" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Withdraw Application</a>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Warning!</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body" >
                         <br>
-                       <center>Cancel Application?</center> 
+                       <center>Are you sure that you want to withdraw the application?</center> 
                        <br>
                       </div>
                       <div class="modal-footer" style="margin-left: auto; margin-right: auto ">
                         <button type="button" class="btn btn-secondary" style="width: 200px" data-dismiss="modal">Close</button>
-                        {!! Form::open(['method' => 'Delete', 'route' => ['application.destroy', 'id'=>$apply->id ] ]) !!}
-                        <button type="submit" class="btn btn-danger" style="width: 200px">Yes!</button>
+                        
+                        {!! Form::open(['method' => 'DELETE','route' => ['application.delete', 'id'=>$apply->id]]) !!}
+                            @csrf
+                        <button type="submit" class="btn btn-danger" style="width: 200px">Yes</button>
                         {!! Form::close() !!}
                                    
                     </div>
