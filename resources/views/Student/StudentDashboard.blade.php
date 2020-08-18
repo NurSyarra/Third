@@ -20,14 +20,19 @@
             <div class="card-body">
               <center><h5 class="card-title">{{ $apply->EventName }}</h5>
 
-              <img class="card-img" src=asset('/storage/poster_images/{{$apply->poster_image}}') alt="poster_image" style="height:250px; width: 260px">
+              <img class="card-img" src="/storage/poster_images/{{$apply->poster_image}}"
+              alt="poster_image" style="height:250px; width: 260px">
               </center><hr>
               
               <p class="card-text">Status of application: 
-              @if( $apply->accepted == 1)
-              Approved
-              @else
-              Pending
+              @if($apply->status == 0)
+                  Pending
+              @endif
+              @if($apply->status == 2)
+                  Accepted
+              @endif
+              @if($apply->status == 1)
+                  Rejected
               @endif</p>
               <a href="{{ route('details.show', ['id'=>$apply->id]) }}" class="btn btn-info">View details</a>
             
